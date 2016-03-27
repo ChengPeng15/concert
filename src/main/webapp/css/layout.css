@@ -1156,3 +1156,52 @@ float: left;
 	height: 100px;
 	line-height: 100px;
 }
+
+/* Seats checkbox */
+	/* basic */
+input[type=checkbox]{
+    display:none;
+    height: 18px;
+    width: 18px;
+}
+input[type=checkbox] + label{
+    display: block;
+    margin: 1px;
+    float: left;
+    height: 18px;
+    width: 22px;
+    background: url("../images/seat.png") 0 -1px no-repeat;
+    background-color: #f0f0f0;
+	-moz-transition: all 0.3s ease; 
+	-o-transition: all 0.3s ease; 
+	-webkit-transition: all 0.3s ease; 
+	transition: all 0.3s ease; 
+} 
+	/* hover */
+div:not(#foo) input[type=checkbox]:hover + label,
+div:not(#foo) input[type=checkbox]:focus + label,
+div:not(#foo) input[type=checkbox] + label:hover{
+	background-color: #ffffff;
+}
+	/* checked */
+div:not(#foo) input[type=checkbox]:checked + label{
+	background-color: #00f000;
+}
+div:not(#foo) input[type=checkbox]:hover:checked + label,
+div:not(#foo) input[type=checkbox]:focus:checked + label,
+div:not(#foo) input[type=checkbox]:checked + label:hover{
+	background-color: #0aff0a;
+}
+	/* disabled */
+div:not(#foo) input[type=checkbox]:disabled + label,
+div:not(#foo) input[type=checkbox]:hover:disabled + label,
+div:not(#foo) input[type=checkbox]:focus:disabled + label,
+div:not(#foo) input[type=checkbox]:disabled + label:hover{
+	background-color: #bfbfbf;
+}
+div:not(#foo) input[type=checkbox]:disabled:checked + label,
+div:not(#foo) input[type=checkbox]:hover:disabled:checked + label,
+div:not(#foo) input[type=checkbox]:focus:disabled:checked + label,
+div:not(#foo) input[type=checkbox]:disabled:checked + label:hover{
+	background-color: #ffaaaa;
+}
