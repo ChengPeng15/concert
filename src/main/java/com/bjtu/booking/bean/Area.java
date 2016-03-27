@@ -1,4 +1,4 @@
-package concert.bean;
+package com.bjtu.booking.bean;
 
 import java.io.Serializable;
 import java.util.List;
