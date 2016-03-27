@@ -134,21 +134,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<article class="module width_full">
 		<header><h3>Choose seat</h3></header>
 		<div class="module_content">
-			<h1>Concert Area</h1>
+			<h1>Concert Area ${areaId }</h1>
 			
 			<div class="module_content">
 
 			<!--seat map-->
-			<div>
-				<input class="seats" id="seat1" type="checkbox">
-				<label for="seat1"></label>
-				<input class="seats" checked disabled id="seat2" type="checkbox">
-				<label for="seat2"></label>
-				<input class="seats" disabled id="seat3" type="checkbox">
-				<label for="seat3"></label>
-				<br>
-			</div>
-
+			<form id="seatmap" action="ticket/book" method="post">
+				<c:forEach var="row" items="${seats }">
+					<div>
+						<c:forEach var="seat" items="${row }">
+							<input name="ticket" class="seats" <c:if test="${seat.status ne '0' }">disabled</c:if> <c:if test="${seat.status eq '2' }">checked</c:if> id="seat${seat.id }" value="${seat.id }" type="checkbox">
+							<label for="seat${seat.id }"></label>
+						</c:forEach>
+					</div>
+					<div class="clear"></div>
+				</c:forEach>
+			</form>
 			<div>
 				<h2>Summize</h2>
 				<ul>
@@ -158,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<br/>
 					
 				</ul>
-				<div class="btn_view_site" style="padding: 10px 60px 30px 260px"><a href="../user/order.html">Next</a></div>
+				<button class="a-btn" type="submit" form="seatmap">Next</button>
 			</div>
 			<div class="clear"></div>
 			

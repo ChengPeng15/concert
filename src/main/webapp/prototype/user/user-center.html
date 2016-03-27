@@ -1,26 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-String ctxPath = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+ctxPath+"/";
-%>
 <!DOCTYPE html>
 <html>
 <head>
-	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Pay Your Order</title>
+	<title>User Center</title>
 	
-	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/layout.css" type="text/css" media="screen" />
 	<!--[if lt IE 9]>
 	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
-	<script src="js/hideshow.js" type="text/javascript"></script>
-	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
+	<script src="../js/jquery-1.5.2.min.js" type="text/javascript"></script>
+	<script src="../js/hideshow.js" type="text/javascript"></script>
+	<script src="../js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../js/jquery.equalHeight.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() 
     	{ 
@@ -57,7 +49,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </head>
 <body>
-
 
 	<header id="header">
 		<hgroup>
@@ -117,52 +108,94 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<article class="module width_full">
-			<header><h3>Sum</h3></header>
-			<div class="module_content" style="height:170px; text-align: center;">
-				<ul>
-					<c:forEach var="detail" items="${preorder.detail }">
-						<li>Concert:${preorder.concertId }  Area:<c:if test="${(detail.ticketId / 100) eq '1' }">East</c:if><c:if test="${(detail.ticketId / 100) eq '2' }">West</c:if><c:if test="${(detail.ticketId / 100) eq '3' }">North</c:if><c:if test="${(detail.ticketId / 100) eq '4' }">South</c:if>   Ticket:${detail.ticketId } Price:${detail.finalPrice } </li>
-					</c:forEach>
-				</ul>
-			</div>
-		</article>
+		<h4 class="alert_info">Welcome to the free MediaLoot admin panel template, this could be an informative message.</h4>
 		
-		<article class="module width_half">
-			<header><h3>Sum</h3></header>
-			<div class="module_content" style="height:170px; line-height:170px; text-align: center;">
-
-				<span class="centre" style="font-size: 48px">
-					$ ${preorder.tPrice }
-				</span>
-
+		<article class="module width_full">
+			<div class="module_content">
+				<article class="user_hello">
+					<span class="centre" style="font-size:48px">Hello, user.</span>
+				</article>
+				<div class="clear"></div>
 			</div>
 		</article><!-- end of stats article -->
 		
-	<article class="module width_half">
-			<header><h3>Choose a method</h3></header>
-				<div class="module_content">
-					<a href="#" class="a-btn animate">
-						<span class="a-btn-text" style="width:75px">Alipay</span> 
-						<span class="a-btn-slide-text">It's free!</span>
-						<span class="a-btn-icon-right"><span></span></span>
-					</a>
-					<a href="#" class="a-btn animate">
-						<span class="a-btn-text" style="width:75px">Wechat</span> 
-						<span class="a-btn-slide-text">It's free!</span>
-						<span class="a-btn-icon-right"><span></span></span>
-					</a>
-					<a href="#" class="a-btn animate">
-						<span class="a-btn-text" style="width:75px">Paypal</span> 
-						<span class="a-btn-slide-text">It's free!</span>
-						<span class="a-btn-icon-right"><span></span></span>
-					</a>
-				</div>
+	<article class="control">
+		<div class="control_wrapper">
+		<a href="../user/user-info.html">
+			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
+				<article class="flipper">
+					<article class="front">
+						<article class="control_content">
+							<span class="centre font_big">My Profile</span>
+						</article>
+					</article>
+					<article class="back">
+						<article class="control_content">
+							<span class="centre font_small">Who I am?</span>
+						</article>
+					</article>
+				</article>
+			</article>
+		</a>
+		</div>
+		<div class="control_wrapper">
+		<a href="../user/user-order.html">
+			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
+				<article class="flipper">
+					<article class="front">
+						<article class="control_content">
+							<span class="centre font_big">My Order</span>
+						</article>
+					</article>
+					<article class="back">
+						<article class="control_content">
+							<span class="centre font_small">Where are my tickets?</span>
+						</article>
+					</article>
+				</article>
+			</article>
+		</a>
+		</div>		<div class="control_wrapper">
+		<a href="../user/user-chgpw.html">
+			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
+				<article class="flipper">
+					<article class="front">
+						<article class="control_content">
+							<span class="centre font_big">Change Password</span>
+						</article>
+					</article>
+					<article class="back">
+						<article class="control_content">
+							<span class="centre font_small">Another month, huh?</span>
+						</article>
+					</article>
+				</article>
+			</article>
+		</a>
+		</div>		<div class="control_wrapper">
+		<a href="mailto:service@whatever.com">
+			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
+				<article class="flipper">
+					<article class="front">
+						<article class="control_content">
+							<span class="centre font_big">Support</span>
+						</article>
+					</article>
+					<article class="back">
+						<article class="control_content">
+							<span class="centre font_small">We always here.</span>
+						</article>
+					</article>
+				</article>
+			</article>
+		</a>
+		</div>
+		
+		<div class="clear"></div>
 
 	</article>
-	
-	<br>
 
+		<div class="spacer"></div>
 	</section>
 
 

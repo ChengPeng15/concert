@@ -10,14 +10,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Pay Your Order</title>
+	<title>Concert Detail</title>
 	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+	<style type="text/css">
+	.ml20{color:red;font-size: 13px;}
+	.ml10{color:#999;font-size: 16px;font-weight: bold;}
+	</style>
+
 	<!--[if lt IE 9]>
 	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
+	<script src="js/jquery-1.5.2.min.js"  type="text/javascript"></script>
 	<script src="js/hideshow.js" type="text/javascript"></script>
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
@@ -52,17 +57,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $(function(){
         $('.column').equalHeight();
     });
-	</script>
-
+</script>
 
 </head>
-<body>
 
+
+<body>
 
 	<header id="header">
 		<hgroup>
 			<h1 class="site_title"><a href="index.html">Website Admin</a></h1>
-			<h2 class="section_title">Dashboard</h2><div class="btn_view_site"><a href="http://www.medialoot.com">View Site</a></div>
+			<h2 class="section_title">Concert tickets</h2>
+
+			<div class="btn_view_site"><a href="http://www.medialoot.com">View Site</a></div>
 		</hgroup>
 	</header> <!-- end of header bar -->
 	
@@ -72,7 +79,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
 		</div>
 		<div class="breadcrumbs_container">
-			<article class="breadcrumbs"><a href="index.html">Website Admin</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
+			<article class="breadcrumbs">
+				<a href="index.html">Website Admin</a> 
+				<div class="breadcrumb_divider"></div> 
+				<a class="current">Concert Tickets</a>
+				<div class="breadcrumb_divider"></div> 
+				<a class="current">Ticket Details</a>
+			</article>
 		</div>
 	</section><!-- end of secondary bar -->
 	
@@ -117,52 +130,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<article class="module width_full">
-			<header><h3>Sum</h3></header>
-			<div class="module_content" style="height:170px; text-align: center;">
-				<ul>
-					<c:forEach var="detail" items="${preorder.detail }">
-						<li>Concert:${preorder.concertId }  Area:<c:if test="${(detail.ticketId / 100) eq '1' }">East</c:if><c:if test="${(detail.ticketId / 100) eq '2' }">West</c:if><c:if test="${(detail.ticketId / 100) eq '3' }">North</c:if><c:if test="${(detail.ticketId / 100) eq '4' }">South</c:if>   Ticket:${detail.ticketId } Price:${detail.finalPrice } </li>
-					</c:forEach>
-				</ul>
-			</div>
-		</article>
-		
-		<article class="module width_half">
-			<header><h3>Sum</h3></header>
-			<div class="module_content" style="height:170px; line-height:170px; text-align: center;">
-
-				<span class="centre" style="font-size: 48px">
-					$ ${preorder.tPrice }
-				</span>
-
-			</div>
-		</article><!-- end of stats article -->
-		
-	<article class="module width_half">
-			<header><h3>Choose a method</h3></header>
-				<div class="module_content">
-					<a href="#" class="a-btn animate">
-						<span class="a-btn-text" style="width:75px">Alipay</span> 
-						<span class="a-btn-slide-text">It's free!</span>
-						<span class="a-btn-icon-right"><span></span></span>
-					</a>
-					<a href="#" class="a-btn animate">
-						<span class="a-btn-text" style="width:75px">Wechat</span> 
-						<span class="a-btn-slide-text">It's free!</span>
-						<span class="a-btn-icon-right"><span></span></span>
-					</a>
-					<a href="#" class="a-btn animate">
-						<span class="a-btn-text" style="width:75px">Paypal</span> 
-						<span class="a-btn-slide-text">It's free!</span>
-						<span class="a-btn-icon-right"><span></span></span>
-					</a>
-				</div>
-
-	</article>
+		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
 	
-	<br>
+		<article class="module width_full">
+		<header><h3>Tickets Details</h3></header>
+		<div class="module_content">
 
+			<div class="ticket-info-top">
+				<h1>${concert.title}</h1>	
+				<div class="info-top-left">
+					<p><img src="images/concerts/${concert.id}.jpg" width="288" height="384" alt=""></p>	
+				</div>
+				<div class="iofo-top-right">
+					<ul class="top-right">
+						<br/>
+						<li><p id="sidebar"><h3>Start：${concert.open }</h3></p></li>
+						<li><p id="sidebar"><h3>  End：${concert.end }</h3></p></li>
+						<li><p id="sidebar"><h3>Stadium：${concert.stadiumName }</h3></p></li>
+						<li><p id="sidebar"><h3>Ticket：${concert.total - concert.sold }/${concert.total } (Available/Total)</h3></p></li>
+						<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><table>
+							<tr>
+							<th valign="top"></th>
+							<td>	
+							
+							</td>
+							<td></td>
+						</table>
+					</ul>
+					<ul>
+					<table><tr>
+					<!--
+						<th><div class="btn_view_site_a"><a href="">Aera Select</a></div></th>
+						<th><div class="btn_view_site_a"><a href="">Buy</a></div></th>-->
+						<th><form action="ticket/area" method="post">
+								Aera Select (Available/Total):
+								<select name="id">
+									<c:forEach var="area" items="${concert.areas }">
+										<option value="${area.id }">${area.name }(${area.total - area.sold }/${area.total })</option>
+									</c:forEach>
+								</select>
+								<br>
+								<button class="a-btn" type="submit">Buy</button>
+							</form>
+							</th>
+					</tr></table>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="ticket-info-mid">
+				<h2>Intro</h2>
+			</div>
+
+			<p style="text-indent:2em;">${concert.intro }</p>
+
+
+			<ul>
+				<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
+				<li>Cras mattis consectetur purus sit amet fermentum.</li>
+				<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
+				<li>Cras mattis consectetur purus sit amet fermentum.</li>
+			</ul>
+		</div>
+		
+				
+			<div class="clear"></div>
+			
+		</article><!-- end of styles article -->
+		
+		
+		
+		<div class="clear"></div>
+		
+		
+		
+
+		<div class="spacer"></div>
 	</section>
 
 
