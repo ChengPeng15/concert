@@ -21,7 +21,7 @@ public class BookController {
 	public ModelAndView area(@RequestParam("id") int id, ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
 		
-				List<List<Ticket>> seats = new ArrayList<>();
+				List<List<Ticket>> seats = new ArrayList<List<Ticket>>();
 		
 		if(1 == id){
 			for (int i = 0; i < 5; i++) {
