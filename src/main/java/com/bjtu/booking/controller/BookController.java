@@ -13,15 +13,34 @@ import com.bjtu.booking.bean.Order;
 import com.bjtu.booking.bean.OrderDetail;
 import com.bjtu.booking.bean.Ticket;
 
+/**
+ * Book Controller
+ * @author SHAO
+ *
+ */
 @Controller
 @RequestMapping("/ticket")
 public class BookController {
 
+	/**
+	 * Enable console output if set 1
+	 */
+	private int debug = 1;
+	
+	/**
+	 * Method to get seats map data
+	 * @param id area id
+	 */
 	@RequestMapping("/area")
 	public ModelAndView area(@RequestParam("id") int id, ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
 		
-				List<List<Ticket>> seats = new ArrayList<List<Ticket>>();
+		/**
+		 * Seats Map 2-dimension list
+		 * Break area tickets into rows for front end use
+		 * Each ticket entity should contains ticket id, price and status
+		 */
+		List<List<Ticket>> seats = new ArrayList<List<Ticket>>();
 		
 		if(1 == id){
 			for (int i = 0; i < 5; i++) {
@@ -112,6 +131,10 @@ public class BookController {
 		return view;
 	}
 	
+	/**
+	 * Method to generate orders
+	 * @param ticket int array, chosen ticket(s) id
+	 */
 	@RequestMapping("/book")
 	public ModelAndView book(@RequestParam("ticket") int ticket[], ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
@@ -137,6 +160,9 @@ public class BookController {
 		return view;
 	}
 	
+	/**
+	 * 
+	 */
 	@RequestMapping("/pay")
 	public ModelAndView pay(){
 		ModelAndView view = new ModelAndView();

@@ -14,19 +14,38 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bjtu.booking.bean.Area;
 import com.bjtu.booking.bean.Concert;
 
+
+/**
+ * Concert Controller
+ * @author SHAO
+ *
+ */
 @Controller
 @RequestMapping("/concert")
 public class ConcertController {
 
+	/**
+	 * Enable console output if set 1
+	 */
 	private int debug = 1;
 	
+	/**
+	 * 
+	 */
 	@RequestMapping("/list")
-	public ModelAndView getConcertList() {
+	public ModelAndView getConcertList(ModelMap modelMap) {
 		ModelAndView view = new ModelAndView();
-		view.setViewName("");
+		
+		
+		
+		view.setViewName("user/concert");
 		return view;
 	}
 
+	/**
+	 * Method to get one specified concert info
+	 * @param id concert id in database
+	 */
 	@RequestMapping("/info/{id}")
 	public ModelAndView getConcertInfo(@PathVariable("id") int id, ModelMap modelMap) {
 		ModelAndView view = new ModelAndView();
@@ -36,7 +55,15 @@ public class ConcertController {
 			System.out.println("ID = [" + id + "]");
 		}
 		
+		/**
+		 * Concert entity
+		 * Should contains concert id, title, intro, stadium name, open time, end time, total tickets, sold tickets and a list of areas 
+		 */
 		Concert conct = new Concert();
+		/**
+		 * Area list entity
+		 * should contains area id, name, total tickets and sold tickets for each area entity
+		 */
 		List<Area> lista = new ArrayList<Area>();
 
 		if (1 == id) {

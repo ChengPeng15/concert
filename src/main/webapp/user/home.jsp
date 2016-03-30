@@ -164,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<th></th> 
     				<th></th> 
     				<th></th> 
-    				<td><a href="http://www.baidu.com" target="_blank">more</a></td> 
+    				<td><a href="concert/list" target="_blank">more</a></td> 
 				</tr> 
 			</thead> 
 			<tbody> 
@@ -212,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<th></th> 
     				<th></th> 
     				<th></th> 
-    				<td><a href="http://www.baidu.com" target="_blank">more</a></td> 
+    				<td><a href="concert/list" target="_blank">more</a></td> 
 				</tr> 
 			</thead> 
 			<tbody> 
