@@ -1205,3 +1205,25 @@ div:not(#foo) input[type=checkbox]:focus:disabled:checked + label,
 div:not(#foo) input[type=checkbox]:disabled:checked + label:hover{
 	background-color: #ffaaaa;
 }
+
+/* Concerts/Stadiums list */
+.list{
+	width: 90%;
+	margin: 5px auto; 
+}
+.list_pic{
+	float: left;
+	padding: 5px 0 5px 5px;
+}
+.list_content{
+	float: right;
+	padding: 5px 5px 5px 0;
+}
+.list:hover{
+	box-shadow: 0 0 4px 2px gold;
+	background-color: #eeeeee;
+	transform: scale(1.02,1.02);
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}

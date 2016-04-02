@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bjtu.booking.bean.Area;
 import com.bjtu.booking.bean.Concert;
+import com.bjtu.booking.foo.Foo;
 
 
 /**
@@ -29,6 +30,8 @@ public class ConcertController {
 	 */
 	private int debug = 1;
 	
+	
+	Foo foo = new Foo();
 	/**
 	 * 
 	 */
@@ -36,8 +39,10 @@ public class ConcertController {
 	public ModelAndView getConcertList(ModelMap modelMap) {
 		ModelAndView view = new ModelAndView();
 		
+		List<Concert> list = new ArrayList<Concert>();
+		list = foo.getConcertList();
 		
-		
+		modelMap.addAttribute("list", list);
 		view.setViewName("user/concert");
 		return view;
 	}

@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta charset="utf-8"/>
 	<title>Concert List</title>
 	
-	<link rel="stylesheet" href="../css/layout.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<style type="text/css">
 	.ml20{color:red;font-size: 13px;}
 	.ml10{color:#999;font-size: 16px;font-weight: bold;}
@@ -22,10 +22,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<script src="../js/jquery-1.5.2.min.js"  type="text/javascript"></script>
-	<script src="../js/hideshow.js" type="text/javascript"></script>
-	<script src="../js/jquery.tablesorter.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="../js/jquery.equalHeight.js"></script>
+	<script src="js/jquery-1.5.2.min.js"  type="text/javascript"></script>
+	<script src="js/hideshow.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() 
     	{ 
@@ -138,75 +138,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h1>Concerts List</h1>
 			
 			<div id="tab1" class="tab_content">
-			<table class="tablesorter" cellspacing="0"> 
-				<tbody>
-
-					<tr>
-						<td>
-						<div >
-							<a href="../user/concert-info.html"><img src="../images/concerts/3.jpg" width="188" height="284" alt=""></a>
+				<c:forEach var="concert" items="${list }">
+					<a href="concert/info/${concert.id}">
+					<div class="list">	
+						<div class="list_pic">
+							<img src="images/concerts/${concert.id}.jpg" width="188" height="284" alt="${concert.title }">
 						</div>
-						</td>
-						<td>
-						<div class="inf">
-							<ul>
-								<li style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </li>
-								<br/>
-								<li style="font-family: Microsoft Yahei;font-size: 20px;">Cras mattis consectetur purus sit amet fermentum.</li>
-								<br/>
-								<li style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </li>
-								<br/>
-								<li style="font-size: 20px;">Cras mattis consectetur purus sit amet fermentum.</li>
-							</ul>
+						<div class="list_content" style="height:284px; line-height:284px">
+							<span class="centre" style="font-size:20px">
+								${concert.title }<br>
+								${concert.open } - ${concert.end }<br>
+								${concert.stadiumName }<br>
+								${concert.total - concert.sold } / ${concert.total }
+							</span>
 						</div>
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>
-						<div >
-							<a href="../user/concert-info.html"><img src="../images/concerts/3.jpg" width="188" height="284" alt=""></a>
-						</div>
-						</td>
-						<td>
-						<div class="inf">
-							<ul>
-								<li style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </li>
-								<br/>
-								<li style="font-family: Microsoft Yahei;font-size: 20px;">Cras mattis consectetur purus sit amet fermentum.</li>
-								<br/>
-								<li style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </li>
-								<br/>
-								<li style="font-size: 20px;">Cras mattis consectetur purus sit amet fermentum.</li>
-							</ul>
-						</div>
-						</td>
-						<td></td>
-					</tr><tr>
-						<td>
-						<div >
-							<a href="../user/concert-info.html"><img src="../images/concerts/3.jpg" width="188" height="284" alt=""></a>
-						</div>
-						</td>
-						<td>
-						<div class="inf">
-							<ul>
-								<li style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </li>
-								<br/>
-								<li style="font-family: Microsoft Yahei;font-size: 20px;">Cras mattis consectetur purus sit amet fermentum.</li>
-								<br/>
-								<li style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </li>
-								<br/>
-								<li style="font-size: 20px;">Cras mattis consectetur purus sit amet fermentum.</li>
-							</ul>
-						</div>
-						</td>
-						<td></td>
-					</tr>
-				</tbody>
-				
-			</table>
-			
+						<div class="clear"></div>
+					</div>
+					</a>
+					<div class="clear"></div>
+				</c:forEach>
 
 			
 		</div>
