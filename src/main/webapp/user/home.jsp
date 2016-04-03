@@ -164,7 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<th></th> 
     				<th></th> 
     				<th></th> 
-    				<td><a href="concert/list" target="_blank">more</a></td> 
+    				<td><a href="concert/list">more</a></td> 
 				</tr> 
 			</thead> 
 			<tbody> 
@@ -212,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<th></th> 
     				<th></th> 
     				<th></th> 
-    				<td><a href="concert/list" target="_blank">more</a></td> 
+    				<td><a href="concert/list">more</a></td> 
 				</tr> 
 			</thead> 
 			<tbody> 
@@ -256,6 +256,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<article class="stats_graph">
 					<table class="tablesorter" cellspacing="0">
 						<tbody>
+						<tr>
+							<td><a href="stadium/list">more</a></td>
+						</tr>
 						<tr>
 							<td>
 							<a href=""><img src="images/stadiums/3.jpg" width="260" height="140" alt="五棵松体育馆" value="五棵松体育馆" /></a>

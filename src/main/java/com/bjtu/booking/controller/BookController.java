@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bjtu.booking.bean.Order;
 import com.bjtu.booking.bean.OrderDetail;
 import com.bjtu.booking.bean.Ticket;
+import com.bjtu.booking.foo.Foo;
 
 /**
  * Book Controller
@@ -27,6 +28,8 @@ public class BookController {
 	 */
 	private int debug = 1;
 	
+	Foo foo = new Foo();
+	
 	/**
 	 * Method to get seats map data
 	 * @param id area id
@@ -35,89 +38,18 @@ public class BookController {
 	public ModelAndView area(@RequestParam("id") int id, ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
 		
+		if(1 == debug){
+			System.out.println("==[" + this.getClass().getName() + "]==");
+			System.out.println("Requesting Area ID [" + id + "]");
+		}
+		
 		/**
 		 * Seats Map 2-dimension list
 		 * Break area tickets into rows for front end use
 		 * Each ticket entity should contains ticket id, price and status
 		 */
 		List<List<Ticket>> seats = new ArrayList<List<Ticket>>();
-		
-		if(1 == id){
-			for (int i = 0; i < 5; i++) {
-				List<Ticket> row = new ArrayList<Ticket>();
-				for (int j = 0; j < 4; j++) {
-					Ticket seat = new Ticket();
-					seat.setId(id * 100 + (i + 1) * 10 + j + 1);
-					seat.setPrice(100 * id);
-					seat.setStatus(0);
-					if (1 == i && 2 == j){
-						seat.setStatus(2);
-					}
-					if (2 == i && 0 == j){
-						seat.setStatus(1);
-					}
-					row.add(seat);
-				}
-				seats.add(row);
-			}
-		}
-		if(2 == id){
-			for (int i = 0; i < 2; i++) {
-				List<Ticket> row = new ArrayList<Ticket>();
-				for (int j = 0; j < 5; j++) {
-					Ticket seat = new Ticket();
-					seat.setId(id * 100 + (i + 1) * 10 + j + 1);
-					seat.setPrice(100 * id);
-					seat.setStatus(2);
-					if (1 == i && 2 == j){
-						seat.setStatus(0);
-					}
-					if (0 == i && 4 == j){
-						seat.setStatus(0);
-					}
-					row.add(seat);
-				}
-				seats.add(row);
-			}
-		}
-		if(3 == id){
-			for (int i = 0; i < 6; i++) {
-				List<Ticket> row = new ArrayList<Ticket>();
-				for (int j = 0; j < 5; j++) {
-					Ticket seat = new Ticket();
-					seat.setId(id * 100 + (i + 1) * 10 + j + 1);
-					seat.setPrice(100 * id);
-					seat.setStatus(2);
-					if (2 > i){
-						seat.setStatus(0);
-					}
-					row.add(seat);
-				}
-				seats.add(row);
-			}
-		}
-		if(4 == id){
-			for (int i = 0; i < 6; i++) {
-				List<Ticket> row = new ArrayList<Ticket>();
-				for (int j = 0; j < 2; j++) {
-					Ticket seat = new Ticket();
-					seat.setId(id * 100 + (i + 1) * 10 + j + 1);
-					seat.setPrice(100 * id);
-					seat.setStatus(2);
-					if (2 < i){
-						seat.setStatus(0);
-					}
-					if (2 == i && 1 == j){
-						seat.setStatus(0);
-					}
-					if (2 == i && 0 == j){
-						seat.setStatus(1);
-					}
-					row.add(seat);
-				}
-				seats.add(row);
-			}
-		}
+		seats = foo.getSeatMap(id);
 		
 		if (seats.isEmpty()){
 			view.setViewName("error");

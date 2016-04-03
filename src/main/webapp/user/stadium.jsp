@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Concert Detail</title>
+	<title>Stadium List</title>
 	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<style type="text/css">
@@ -133,65 +133,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
 	
 		<article class="module width_full">
-		<header><h3>Tickets Details</h3></header>
+		<header><h3>Concetrts</h3></header>
 		<div class="module_content">
+			<h1>Concerts List</h1>
+			
+			<div id="tab1" class="tab_content">
+				<c:forEach var="stadium" items="${list }">
+					<a href="stadium/info/${stadium.id}">
+					<div class="list">	
+						<div class="list_pic">
+							<img src="images/stadiums/${stadium.id}.jpg" width="284" height="188" alt="${stadium.name }">
+						</div>
+						<div class="list_content" style="height:188px; line-height:188px">
+							<span class="centre" style="font-size:20px">
+								${stadium.name }<br>
+								${stadium.address }<br>
+								${stadium.total }
+							</span>
+						</div>
+						<div class="clear"></div>
+					</div>
+					</a>
+					<div class="clear"></div>
+				</c:forEach>
 
-			<div class="ticket-info-top">
-				<h1>${concert.title}</h1>	
-				<div class="info-top-left">
-					<p><img src="images/concerts/${concert.id}.jpg" width="288" height="384" alt="${concert.title}"></p>	
-				</div>
-				<div class="info-top-right">
-					<ul class="top-right">
-						<br/>
-						<li><p id="sidebar"><h3>Start：${concert.open }</h3></p></li>
-						<li><p id="sidebar"><h3>  End：${concert.end }</h3></p></li>
-						<li><p id="sidebar"><h3>Stadium：${concert.stadiumName }</h3></p></li>
-						<li><p id="sidebar"><h3>Ticket：${concert.total - concert.sold }/${concert.total } (Available/Total)</h3></p></li>
-						<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><table>
-							<tr>
-							<th valign="top"></th>
-							<td>	
-							
-							</td>
-							<td></td>
-						</table>
-					</ul>
-					<ul>
-					<table><tr>
-					<!--
-						<th><div class="btn_view_site_a"><a href="">Aera Select</a></div></th>
-						<th><div class="btn_view_site_a"><a href="">Buy</a></div></th>-->
-						<th><form action="ticket/area" method="post">
-								Aera Select (Available/Total):
-								<select name="id">
-									<c:forEach var="area" items="${concert.areas }">
-										<option value="${area.id }">${area.name }(${area.total - area.sold }/${area.total })</option>
-									</c:forEach>
-								</select>
-								<br>
-								<button class="a-btn" type="submit">Buy</button>
-							</form>
-							</th>
-					</tr></table>
-					</ul>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-			<div class="ticket-info-mid">
-				<h2>Intro</h2>
-			</div>
-
-			<p style="text-indent:2em;">${concert.intro }</p>
-
-
-			<ul>
-				<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
-				<li>Cras mattis consectetur purus sit amet fermentum.</li>
-				<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
-				<li>Cras mattis consectetur purus sit amet fermentum.</li>
-			</ul>
+			
 		</div>
 		
 				

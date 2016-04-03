@@ -1,6 +1,7 @@
 package com.bjtu.booking.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Stadium implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -10,6 +11,7 @@ public class Stadium implements Serializable {
 	private String address;
 	private int total;
 	private String intro;
+	private List<Concert> concerts;
 
 	public int getId() {
 		return id;
@@ -49,6 +51,14 @@ public class Stadium implements Serializable {
 
 	public void setIntro(String intro) {
 		this.intro = intro;
+	}
+
+	public List<Concert> getConcerts() {
+		return concerts;
+	}
+
+	public void setConcerts(List<Concert> concerts) {
+		this.concerts = concerts;
 	}
 
 }
