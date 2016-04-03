@@ -98,8 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul class="toggle">
 			<li class="icn_add_user"><a href="#">Add New User</a></li>
 			<li class="icn_view_users"><a href="#">View Users</a></li>
-			<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/></c:url>
-			<li class="icn_profile"><a href="${userinfo }">Your Profile</a></li>
+			<li class="icn_profile"><a href="user/user_center.jsp">Your Profile</a></li>
 		</ul>
 		<h3>Media</h3>
 		<ul class="toggle">

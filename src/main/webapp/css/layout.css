@@ -562,6 +562,12 @@ text-align: center;
     -o-transition:all 0.3s linear;
     transition:all 0.3s linear;
 }
+a.a-btn{
+	color:#000000;
+	border-top-right-radius:19px;
+	border-top-left-radius:19px;
+	line-height:38px;
+}
 .a-btn-text{
     padding-top:10px;
     display:block;
@@ -1204,6 +1210,30 @@ div:not(#foo) input[type=checkbox]:hover:disabled:checked + label,
 div:not(#foo) input[type=checkbox]:focus:disabled:checked + label,
 div:not(#foo) input[type=checkbox]:disabled:checked + label:hover{
 	background-color: #ffaaaa;
+}
+
+/* Form */
+span.former {
+	color: #000000;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: normal;
+	margin: 0.3vw;
+	font-size: 1vw;
+	text-shadow: 0.1vw 0.1vw 0.3vw #aaaaaa;
+}
+span.former input[type=text]{
+	margin-left: 0.1vw;
+	font-size: 1vw;
+	text-shadow: 0.1vw 0.1vw 0.3vw #aaaaaa;
+}
+span.former input[type=text]:disabled{
+	margin-left: 0.1vw;
+	border: none;
+	background-color: #ffffff;
+	color: #000000;
+	font-size: 1vw;
+	text-shadow: 0.1vw 0.1vw 0.3vw #aaaaaa;
 }
 
 /* Concerts/Stadiums list */

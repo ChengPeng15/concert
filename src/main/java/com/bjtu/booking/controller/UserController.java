@@ -29,8 +29,12 @@ public class UserController {
 	Foo foo = new Foo();
 	
 	@RequestMapping("/info")
-	public ModelAndView getUserInfo(@RequestParam("id")int id, ModelMap modelMap){
+	public ModelAndView getUserInfo(@RequestParam("id")int id, @RequestParam(value="edit", required = false)Integer edit, ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
+		
+		if(null == edit){
+			edit = 0;
+		}
 		
 		if(1 == debug){
 			System.out.println("==[" + this.getClass().getName() + "]==");
@@ -40,6 +44,7 @@ public class UserController {
 		User user = new User();
 		user = foo.getUserInfo(id);
 		
+		modelMap.addAttribute("edit", edit);
 		modelMap.addAttribute("user", user);
 		view.setViewName("/user/user_info");
 		return view;
