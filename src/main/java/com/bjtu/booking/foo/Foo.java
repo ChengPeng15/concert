@@ -9,6 +9,7 @@ import com.bjtu.booking.bean.Area;
 import com.bjtu.booking.bean.Concert;
 import com.bjtu.booking.bean.Stadium;
 import com.bjtu.booking.bean.Ticket;
+import com.bjtu.booking.bean.User;
 
 /**
  * All methods here are purely rubbish but references, need replace by some real
@@ -173,25 +174,25 @@ public class Foo {
 
 		return seats;
 	}
-	
+
 	// Stadium
 	public List<Stadium> getStadiumList() {
 		List<Stadium> list = new ArrayList<Stadium>();
 
 		for (int i = 1; i < 4; i++) {
 			Stadium stadm = new Stadium();
-			
+
 			stadm.setId(i);
 			stadm.setName("Stadium " + i);
 			stadm.setTotal(200);
 			stadm.setAddress("Some where on this planet");
-			
+
 			list.add(stadm);
 		}
 
 		return list;
 	}
-	
+
 	public List<Concert> getStadiumConcert(int id) {
 		List<Concert> list = new ArrayList<Concert>();
 
@@ -200,22 +201,36 @@ public class Foo {
 			conct = this.getConcertDetail(i);
 			list.add(conct);
 		}
-		
+
 		return list;
 	}
-	
+
 	public Stadium getStadiumDetail(int id) {
 		Stadium stadm = new Stadium();
-		
+
 		stadm.setId(id);
 		stadm.setName("Stadium " + id);
 		stadm.setIntro("This is a big stadium");
 		stadm.setTotal(200);
 		stadm.setAddress("Some where on this planet");
-		if (1 == id){
+		if (1 == id) {
 			stadm.setConcerts(this.getStadiumConcert(id));
 		}
-		
+
 		return stadm;
+	}
+
+	// user
+	public User getUserInfo(int id) {
+		User user = new User();
+		
+		user.setId(id);
+		user.setName("User " + id);
+		user.setEmail("user@whatever.com");
+		user.setMobile("13800138000");
+		user.setAddress("Whatever HQ");
+		user.setRole(0);
+		
+		return user;
 	}
 }
