@@ -10,11 +10,13 @@ public class Order implements Serializable {
 	private int id;
 	private int userId;
 	private int concertId;
+	private String concertName;
 	private float tPrice;
 	private int status;
 	private Timestamp createTime;
 	private Timestamp payTime;
 	private List<OrderDetail> detail;
+	private int detailNum;
 
 	public int getId() {
 		return id;
@@ -38,6 +40,14 @@ public class Order implements Serializable {
 
 	public void setConcertId(int concertId) {
 		this.concertId = concertId;
+	}
+
+	public String getConcertName() {
+		return concertName;
+	}
+
+	public void setConcertName(String concertName) {
+		this.concertName = concertName;
 	}
 
 	public float gettPrice() {
@@ -78,6 +88,14 @@ public class Order implements Serializable {
 
 	public void setDetail(List<OrderDetail> detail) {
 		this.detail = detail;
+	}
+
+	public int getDetailNum() {
+		return detailNum;
+	}
+
+	public void setDetailNum(int detailNum) {
+		this.detailNum = detailNum;
 	}
 
 }

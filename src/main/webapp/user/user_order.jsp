@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Concert Detail</title>
+	<title>Your Order</title>
 	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<style type="text/css">
@@ -133,36 +133,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
 	
 		<article class="module width_full">
-		<header><h3>Profiles</h3></header>
+		<header><h3>Concetrts</h3></header>
 		<div class="module_content">
+			<h1>Concerts List</h1>
+			
+			<div id="tab1" class="tab_content">
+				<c:forEach var="order" items="${list }">
+					<a href="order/info/${order.id}">
+					<div class="list">	
+							<span class="former">Order No.: ${order.id }</span><br/>
+							<span class="former">Concert: ${order.concertName }</span><br/>
+							<span class="former">Price: ${order.tPrice }</span><br/>
+							<span class="former">Ticket(s): ${order.detailNum }</span><br/>
+							<span class="former">Create on: ${order.createTime }</span><br/>
+							<span class="former">Paid on: 
+								<c:if test="${null ne order.payTime }">${order.payTime }</c:if>
+								<c:if test="${null eq order.payTime }">Not paid yet.</c:if>
+							</span><br/>
+							<span class="former">Status: 
+								<c:if test="${'0' eq order.status }">Waiting for pay</c:if>
+								<c:if test="${'1' eq order.status }">Finish</c:if>
+								<c:if test="${'2' eq order.status }">Cancelled</c:if>
+							</span>
+						<div class="clear"></div>
+					</div>
+					</a>
+					<div class="clear"></div>
+				</c:forEach>
 
-			<div class="ticket-info-top">
-				<h1></h1>	
-				<div class="info-top-left">
-					<p><img src="images/concerts/3.jpg" width="188" height="284" alt=""></p>	
-				</div>
-				<div class="iofo-top-right">
-					<form id="user" action="user/changeinfo" method="post">
-						<span class="former">Name:<input name="name" type="text" value="${user.name }" disabled="disabled"></span><br/>
-						<span class="former">Email:<input name="email" type="text" value="${user.email }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span><br/>
-						<span class="former">Mobile:<input name="mobile" type="text" value="${user.mobile }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span><br/>
-						<span class="former">Address:<input name="address" type="text" value="${user.address }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span>
-					</form>
-					<c:if test="${'0' eq edit}">
-						<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/><c:param name="edit" value="1"/></c:url>
-						<a class="a-btn" href="${userinfo }">Edit</a>
-						<a class="a-btn" href="user/user_center.jsp">Back</a>
-					</c:if>
-					<c:if test="${'1' eq edit}">
-						<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/></c:url>
-						<button class="a-btn" type="submit" form="user">Confirm</button>
-						<a class="a-btn" href="${userinfo }">Cancel</a>
-					</c:if>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-
+			
 		</div>
 		
 				

@@ -8,6 +8,7 @@ public class OrderDetail implements Serializable {
 	private int id;
 	private int orderId;
 	private int ticketId;
+	private Ticket ticket;
 	private float finalPrice;
 	private float originalPrice;
 
@@ -33,6 +34,14 @@ public class OrderDetail implements Serializable {
 
 	public void setTicketId(int ticketId) {
 		this.ticketId = ticketId;
+	}
+
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
 	}
 
 	public float getFinalPrice() {

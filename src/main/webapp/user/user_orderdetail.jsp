@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Concert Detail</title>
+	<title>Order Detail</title>
 	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<style type="text/css">
@@ -139,15 +139,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="ticket-info-top">
 				<h1></h1>	
 				<div class="info-top-left">
-					<p><img src="images/concerts/3.jpg" width="188" height="284" alt=""></p>	
+					<p><img src="images/concerts/${order.concertId }.jpg" width="188" height="284" alt=""></p>	
 				</div>
 				<div class="iofo-top-right">
-					<form id="user" action="user/changeinfo" method="post">
-						<span class="former">Name:<input name="name" type="text" value="${user.name }" disabled="disabled"></span><br/>
-						<span class="former">Email:<input name="email" type="text" value="${user.email }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span><br/>
-						<span class="former">Mobile:<input name="mobile" type="text" value="${user.mobile }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span><br/>
-						<span class="former">Address:<input name="address" type="text" value="${user.address }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span>
-					</form>
+						<span class="former">Order No.:${order.id }</span><br/>
+						<span class="former">Price: ${order.tPrice }</span><br/>
+						<span class="former">Create on: ${order.createTime }</span><br/>
+						<span class="former">Paid on: 
+							<c:if test="${null ne order.payTime }">${order.payTime }</c:if>
+							<c:if test="${null eq order.payTime }">Not paid yet.</c:if>
+						</span><br/>
+						<span class="former">Status: 
+							<c:if test="${'0' eq order.status }">Waiting for pay</c:if>
+							<c:if test="${'1' eq order.status }">Finish</c:if>
+							<c:if test="${'2' eq order.status }">Cancelled</c:if>
+						</span><br/>
+						<span class="former">Ticket(s):</span><br/>
+						<c:forEach var="detail" items="${order.detail }" varStatus="obj">
+						<span class="former">${obj.count}. Area:${detail.ticket.areaName } Seat:${detail.ticket.code } Price:${detail.finalPrice }</span><br/>
+						</c:forEach>						
 					<c:if test="${'0' eq edit}">
 						<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/><c:param name="edit" value="1"/></c:url>
 						<a class="a-btn" href="${userinfo }">Edit</a>

@@ -1,11 +1,15 @@
 package com.bjtu.booking.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bjtu.booking.bean.Order;
 import com.bjtu.booking.bean.User;
 import com.bjtu.booking.foo.Foo;
 
@@ -47,6 +51,23 @@ public class UserController {
 		modelMap.addAttribute("edit", edit);
 		modelMap.addAttribute("user", user);
 		view.setViewName("/user/user_info");
+		return view;
+	}
+	
+	@RequestMapping("/order")
+	public ModelAndView getUserOrder(@RequestParam("id")int id, ModelMap modelMap){
+		ModelAndView view = new ModelAndView();
+		
+		if(1 == debug){
+			System.out.println("==[" + this.getClass().getName() + "]==");
+			System.out.println("Requesting User Order - ID [" + id + "]");
+		}
+		
+		List<Order> list = new ArrayList<Order>();
+		list = foo.getUserOrder(id);
+		
+		modelMap.addAttribute("list", list);
+		view.setViewName("/user/user_order");
 		return view;
 	}
 	
