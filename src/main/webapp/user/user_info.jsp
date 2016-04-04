@@ -143,18 +143,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="iofo-top-right">
 					<form id="user" action="user/changeinfo" method="post">
-<<<<<<< HEAD
 					<input id="id" name="id" value="2" hidden="true" />
-						<span class="former">Name:<input name="name" type="text" value="${user.name }" disabled="disabled" /></span><br/>
-						<span class="former">Email:<input name="email" type="text" value="${user.email }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if> /></span><br/>
-						<span class="former">Mobile:<input name="mobile" type="text" value="${user.mobile }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if> /></span><br/>
-						<span class="former">Address:<input name="address" type="text" value="${user.address }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if> /></span>
-=======
 						<span class="former">Name:<input name="name" type="text" value="${user.name }" disabled="disabled"></span><br/>
 						<span class="former">Email:<input name="email" type="text" value="${user.email }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span><br/>
 						<span class="former">Mobile:<input name="mobile" type="text" value="${user.mobile }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span><br/>
 						<span class="former">Address:<input name="address" type="text" value="${user.address }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span>
->>>>>>> branch 'master' of https://github.com/crazycoffee/concert.git
 					</form>
 					<c:if test="${'0' eq edit}">
 						<c:url var="userinfo" value="user/info"><c:param name="id" value="2"/><c:param name="edit" value="1"/></c:url>

@@ -162,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</a></td>
 			</table>
 			<div class="clear"></div>
-			<br\>
+			<br/>
 			
 		</article><!-- end of styles article -->
 		

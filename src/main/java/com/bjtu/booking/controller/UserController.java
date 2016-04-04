@@ -1,10 +1,7 @@
 package com.bjtu.booking.controller;
 
-<<<<<<< HEAD
 import javax.annotation.Resource;
 
-=======
->>>>>>> branch 'master' of https://github.com/crazycoffee/concert.git
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjtu.booking.bean.Order;
-<<<<<<< HEAD
 import com.bjtu.booking.bean.UserInfo;
-=======
-import com.bjtu.booking.bean.User;
->>>>>>> branch 'master' of https://github.com/crazycoffee/concert.git
 import com.bjtu.booking.foo.Foo;
 import com.bjtu.booking.service.UserService;
 
@@ -57,7 +50,6 @@ public class UserController {
 		return view;
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value="/changeinfo", method=RequestMethod.POST)
 	public ModelAndView changeInfo(@RequestParam("id")int id, @RequestParam("email")String email, @RequestParam("mobile")String mobile, @RequestParam("address")String address, ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
@@ -76,8 +68,6 @@ public class UserController {
 	
 	
 	
-=======
->>>>>>> branch 'master' of https://github.com/crazycoffee/concert.git
 	@RequestMapping("/order")
 	public ModelAndView getUserOrder(@RequestParam("id")int id, ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
