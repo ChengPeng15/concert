@@ -142,18 +142,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p><img src="images/concerts/3.jpg" width="188" height="284" alt=""></p>	
 				</div>
 				<div class="iofo-top-right">
-					<form id="user" action="user/changeinfo" method="post"></form>
-						<span class="former">Name:<input name="name" type="text" value="${user.name }" disabled="disabled"></span><br/>
-						<span class="former">Email:<input name="email" type="text" value="${user.email }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span><br/>
-						<span class="former">Mobile:<input name="mobile" type="text" value="${user.mobile }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span><br/>
-						<span class="former">Address:<input name="address" type="text" value="${user.address }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if>></span>
+					<form id="user" action="user/changeinfo" method="post">
+					<input id="id" name="id" value="2" hidden="true" />
+						<span class="former">Name:<input name="name" type="text" value="${user.name }" disabled="disabled" /></span><br/>
+						<span class="former">Email:<input name="email" type="text" value="${user.email }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if> /></span><br/>
+						<span class="former">Mobile:<input name="mobile" type="text" value="${user.mobile }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if> /></span><br/>
+						<span class="former">Address:<input name="address" type="text" value="${user.address }" <c:if test="${'0' eq edit}">disabled="disabled"</c:if> /></span>
+					</form>
 					<c:if test="${'0' eq edit}">
-						<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/><c:param name="edit" value="1"/></c:url>
+						<c:url var="userinfo" value="user/info"><c:param name="id" value="2"/><c:param name="edit" value="1"/></c:url>
 						<a class="a-btn" href="${userinfo }">Edit</a>
 						<a class="a-btn" href="user/user_center.jsp">Back</a>
 					</c:if>
 					<c:if test="${'1' eq edit}">
-						<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/></c:url>
+						<c:url var="userinfo" value="user/info"><c:param name="id" value="2"/></c:url>
 						<button class="a-btn" type="submit" form="user">Confirm</button>
 						<a class="a-btn" href="${userinfo }">Cancel</a>
 					</c:if>

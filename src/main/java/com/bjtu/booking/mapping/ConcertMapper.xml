@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.bjtu.booking.dao.inf.IConcertDAO">
+	<resultMap type="com.bjtu.booking.bean.Concert" id="concert">
+		<id column="id" property="id"/>
+		<result property="stadiumId" column="stadium_id"/>
+		<result property="title" column="title"/>
+		<result property="intro" column="introduction"/>
+		<result property="open" column="open_time"/>
+		<result property="end" column="end_time"/>
+		<result property="total" column="total_seat"/>
+		<result property="sold" column="sold_seat"/>
+		<association property="stadiumName" column="stadium_id" javaType="java.lang.String" select="getStadiumName"></association>
+	</resultMap>
+    <select id="getConcertList" resultMap="concert">
+        <![CDATA[
+            SELECT * FROM concert
+        ]]> 
+    </select>
+    <select id="getStadiumName" parameterType="int" resultType="String">
+    	<![CDATA[
+    		SELECT name FROM stadium WHERE id = #{id}
+    	]]>
+    </select>
+</mapper>

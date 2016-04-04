@@ -3,6 +3,8 @@ package com.bjtu.booking.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bjtu.booking.bean.Concert;
 import com.bjtu.booking.foo.Foo;
+import com.bjtu.booking.service.ConcertService;
+import com.bjtu.booking.service.UserService;
 
 
 /**
@@ -32,13 +36,18 @@ public class ConcertController {
 	 */
 	Foo foo = new Foo();
 	
+	@Resource
+	private UserService userService;
+	@Resource
+	private ConcertService concertService;
+	
 	/**
 	 * Method to get concert list, no limitation now
 	 */
 	@RequestMapping("/list")
 	public ModelAndView getConcertList(ModelMap modelMap) {
 		ModelAndView view = new ModelAndView();
-		
+		concertService.getConcertList();
 		if(1 == debug){
 			System.out.println("==[" + this.getClass().getName() + "]==");
 			System.out.println("Requesting Concert list");

@@ -12,8 +12,12 @@ public class UserService {
 	@Resource
 	private IUserDAO userDAO;
 	
-	public void getUserById(int id){
-		UserInfo user = userDAO.selectById(1, "admin");
-		System.out.println(user == null);
+	public UserInfo getUserById(int id){
+		UserInfo user = userDAO.selectById(id);
+		return user;
+	}
+	
+	public void updateProfile(UserInfo user) {
+		userDAO.updateProfile(user);
 	}
 }

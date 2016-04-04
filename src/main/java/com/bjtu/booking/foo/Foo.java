@@ -7,9 +7,11 @@ import java.util.List;
 
 import com.bjtu.booking.bean.Area;
 import com.bjtu.booking.bean.Concert;
+import com.bjtu.booking.bean.Order;
+import com.bjtu.booking.bean.OrderDetail;
 import com.bjtu.booking.bean.Stadium;
 import com.bjtu.booking.bean.Ticket;
-import com.bjtu.booking.bean.User;
+import com.bjtu.booking.bean.UserInfo;
 
 /**
  * All methods here are purely rubbish but references, need replace by some real
@@ -221,8 +223,8 @@ public class Foo {
 	}
 
 	// user
-	public User getUserInfo(int id) {
-		User user = new User();
+	public UserInfo getUserInfo(int id) {
+		UserInfo user = new UserInfo();
 		
 		user.setId(id);
 		user.setName("User " + id);
@@ -232,5 +234,67 @@ public class Foo {
 		user.setRole(0);
 		
 		return user;
+	}
+	
+	public List<Order> getUserOrder(int id){
+		List<Order> list = new ArrayList<Order>();
+		
+		for (int i = 1; i < 4; i++) {
+			Order order = new Order();
+			order.setId(i);
+			order.setConcertName("Concert " + i);
+			order.setCreateTime(new Timestamp((new Date()).getTime()));
+			if(2 == i){
+				order.setPayTime(new Timestamp((new Date()).getTime()));
+			}
+			order.setDetailNum(i);
+			order.settPrice(i*200);
+			order.setStatus(i - 1);
+			list.add(order);
+		}
+		
+		return list;
+	}
+
+	public List<OrderDetail> getOrderDetail(int id){
+		List<OrderDetail> list = new ArrayList<OrderDetail>();
+		
+		for (int i = 1; i <= id; i++) {
+			OrderDetail detail = new OrderDetail();
+			detail.setId(id * 10 + i);
+			detail.setOriginalPrice(id * 100);
+			detail.setFinalPrice(id * 100);
+			detail.setTicket(this.getTicket(i));
+			list.add(detail);
+		}
+		
+		return list;
+	}
+	
+	public Order getOrder(int id){
+		Order order = new Order();
+
+		order.setId(id);
+		order.setConcertId(id);
+		order.setConcertName("Concert " + id);
+		order.setCreateTime(new Timestamp((new Date()).getTime()));
+		if(2 == id){
+			order.setPayTime(new Timestamp((new Date()).getTime()));
+		}
+		order.setDetail(this.getOrderDetail(id));
+		order.settPrice(id * 200);
+		order.setStatus(id - 1);
+		
+		return order;
+	}
+	
+	//Ticket
+	public Ticket getTicket(int id){
+		Ticket ticket = new Ticket();
+		
+		ticket.setAreaName("Area " + id);
+		ticket.setCode(id * 100 + id);
+		
+		return ticket;
 	}
 }

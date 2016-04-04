@@ -6,5 +6,6 @@ import com.bjtu.booking.bean.UserInfo;
 
 public interface IUserDAO {
 	
-	UserInfo selectById(@Param("id")int id, @Param("username") String name);
+	UserInfo selectById(@Param("id")int id);
+	int updateProfile(UserInfo user);
 }

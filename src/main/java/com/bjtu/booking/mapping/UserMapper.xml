@@ -3,7 +3,12 @@
 <mapper namespace="com.bjtu.booking.dao.inf.IUserDAO">
     <select id="selectById" resultType="com.bjtu.booking.bean.UserInfo">  
         <![CDATA[
-            SELECT * from user_info WHERE id = #{id} and name = #{username} 
-        ]]> 
+            SELECT * from user_info WHERE id = #{id}
+        ]]>
     </select>
+    <update id="updateProfile" parameterType="com.bjtu.booking.bean.UserInfo">
+    	<![CDATA[
+            UPDATE user_info SET email = #{email}, mobile = #{mobile}, address = #{address} where id=#{id}
+        ]]>
+    </update>
 </mapper> 
