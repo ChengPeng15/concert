@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bjtu.booking.bean.Order;
 import com.bjtu.booking.bean.UserInfo;
+import com.bjtu.booking.foo.Foo;
 import com.bjtu.booking.service.UserService;
 
 /**
@@ -23,6 +25,9 @@ import com.bjtu.booking.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
+	int debug = 1;
+	Foo foo = new Foo();
 	
 	/**
 	 * inject the user service
