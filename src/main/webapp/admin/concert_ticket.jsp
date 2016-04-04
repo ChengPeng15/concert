@@ -5,22 +5,27 @@
 String ctxPath = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+ctxPath+"/";
 %>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Admin Home</title>
+	<title>Concert Detail</title>
 	
-	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/layout.css" type="text/css" media="screen" />
+	<style type="text/css">
+	.ml20{color:red;font-size: 13px;}
+	.ml10{color:#999;font-size: 16px;font-weight: bold;}
+	</style>
+
 	<!--[if lt IE 9]>
 	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
-	<script src="js/hideshow.js" type="text/javascript"></script>
-	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
+	<script src="../js/jquery-1.5.2.min.js"  type="text/javascript"></script>
+	<script src="../js/hideshow.js" type="text/javascript"></script>
+	<script src="../js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../js/jquery.equalHeight.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() 
     	{ 
@@ -52,17 +57,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $(function(){
         $('.column').equalHeight();
     });
-	</script>
-
+</script>
 
 </head>
-<body>
 
+
+<body>
 
 	<header id="header">
 		<hgroup>
 			<h1 class="site_title"><a href="index.html">Website Admin</a></h1>
-			<h2 class="section_title">Dashboard</h2><div class="btn_view_site"><a href="http://www.medialoot.com">View Site</a></div>
+			<h2 class="section_title">Concert tickets</h2>
+
+			<div class="btn_view_site"><a href="http://www.medialoot.com">View Site</a></div>
 		</hgroup>
 	</header> <!-- end of header bar -->
 	
@@ -72,7 +79,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
 		</div>
 		<div class="breadcrumbs_container">
-			<article class="breadcrumbs"><a href="index.html">Website Admin</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
+			<article class="breadcrumbs">
+				<a href="index.html">Website Admin</a> 
+				<div class="breadcrumb_divider"></div> 
+				<a class="current">Concert Tickets</a>
+				<div class="breadcrumb_divider"></div> 
+				<a class="current">Ticket Details</a>
+			</article>
 		</div>
 	</section><!-- end of secondary bar -->
 	
@@ -117,97 +130,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<h4 class="alert_info">Welcome to the free MediaLoot admin panel template, this could be an informative message.</h4>
-		
+		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
+
 		<article class="module width_full">
-			<div class="module_content">
-				<article class="admin_hello">
-					<span class="centre" style="font-size:48px">Hello, admin.</span>
-				</article>
-				<div class="clear"></div>
+		<header><h3 class="tabs_involved">Seat Information Area Setting</h3>
+		</header>
+
+		<div class="tab_container">
+			<div>
+			<!--seat information-->
+
+			<input type="image" src="../images/seats.png" value="seat" style="margin: 20px auto"></input>
 			</div>
-		</article><!-- end of stats article -->
-		
-	<article class="control">
-		<div class="control_wrapper">
-		<c:url var="concertslist" value="admin/concertslist"><c:param name="id" value="1"/></c:url>
-		<a href="${concertslist}">
-			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
-				<article class="flipper">
-					<article class="front">
-						<article class="control_content">
-							<span class="centre font_big">Concert Manage</span>
-						</article>
-					</article>
-					<article class="back">
-						<article class="control_content">
-							<span class="centre font_small">We have 138,037 concerts now.</span>
-						</article>
-					</article>
-				</article>
-			</article>
-		</a>
-		</div>
-		<div class="control_wrapper">
-		<a href="https://www.google.com.tw">
-			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
-				<article class="flipper">
-					<article class="front">
-						<article class="control_content">
-							<span class="centre font_big">Stadium Manage</span>
-						</article>
-					</article>
-					<article class="back">
-						<article class="control_content">
-							<span class="centre font_small">We have 2,048 stadiums now.</span>
-						</article>
-					</article>
-				</article>
-			</article>
-		</a>
-		</div>		<div class="control_wrapper">
-		<a href="https://www.google.com.tw">
-			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
-				<article class="flipper">
-					<article class="front">
-						<article class="control_content">
-							<span class="centre font_big">Admin Manage</span>
-						</article>
-					</article>
-					<article class="back">
-						<article class="control_content">
-							<span class="centre font_small">Do some recruiting.</span>
-						</article>
-					</article>
-				</article>
-			</article>
-		</a>
-		</div>		<div class="control_wrapper">
-		<a href="https://www.google.com.tw">
-			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
-				<article class="flipper">
-					<article class="front">
-						<article class="control_content">
-							<span class="centre font_big">Stastic Report</span>
-						</article>
-					</article>
-					<article class="back">
-						<article class="control_content">
-							<span class="centre font_small">Look fortune we made.</span>
-						</article>
-					</article>
-				</article>
-			</article>
-		</a>
-		</div>
+			
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			
+			<table>
+			<tr><td>
+			<a href="../admin/concert_tickets_cfm.html" class="a-btn animate " style="margin-left: 180px" >
+				<span class="a-btn-text" style="width: 75px;">Next</span>
+				<span class="a-btn-slide-text">go on</span>
+				<span class="a-btn-icon-right"><span></span></span>
+			</a></td><td>
+			<a href="javascript:history.back()" class="a-btn animate " style="margin-left: 180px" >
+				<span class="a-btn-text" style="width: 75px;">Cancel</span>
+				<span class="a-btn-slide-text">back</span>
+				<span class="a-btn-icon-right"><span></span></span>
+			</a></td>
+			</table>
+			<div class="clear"></div>
+			<br\>
+			
+		</article><!-- end of styles article -->
 		
 		<div class="clear"></div>
 
-	</article>
-
 		<div class="spacer"></div>
 	</section>
-
 
 </body>
 

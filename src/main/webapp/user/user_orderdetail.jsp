@@ -10,14 +10,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Admin Home</title>
+	<title>Order Detail</title>
 	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+	<style type="text/css">
+	.ml20{color:red;font-size: 13px;}
+	.ml10{color:#999;font-size: 16px;font-weight: bold;}
+	</style>
+
 	<!--[if lt IE 9]>
 	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
+	<script src="js/jquery-1.5.2.min.js"  type="text/javascript"></script>
 	<script src="js/hideshow.js" type="text/javascript"></script>
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
@@ -52,17 +57,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $(function(){
         $('.column').equalHeight();
     });
-	</script>
-
+</script>
 
 </head>
-<body>
 
+
+<body>
 
 	<header id="header">
 		<hgroup>
 			<h1 class="site_title"><a href="index.html">Website Admin</a></h1>
-			<h2 class="section_title">Dashboard</h2><div class="btn_view_site"><a href="http://www.medialoot.com">View Site</a></div>
+			<h2 class="section_title">Concert tickets</h2>
+
+			<div class="btn_view_site"><a href="http://www.medialoot.com">View Site</a></div>
 		</hgroup>
 	</header> <!-- end of header bar -->
 	
@@ -72,7 +79,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
 		</div>
 		<div class="breadcrumbs_container">
-			<article class="breadcrumbs"><a href="index.html">Website Admin</a> <div class="breadcrumb_divider"></div> <a class="current">Dashboard</a></article>
+			<article class="breadcrumbs">
+				<a href="index.html">Website Admin</a> 
+				<div class="breadcrumb_divider"></div> 
+				<a class="current">Concert Tickets</a>
+				<div class="breadcrumb_divider"></div> 
+				<a class="current">Ticket Details</a>
+			</article>
 		</div>
 	</section><!-- end of secondary bar -->
 	
@@ -117,93 +130,62 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<h4 class="alert_info">Welcome to the free MediaLoot admin panel template, this could be an informative message.</h4>
-		
+		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
+	
 		<article class="module width_full">
-			<div class="module_content">
-				<article class="admin_hello">
-					<span class="centre" style="font-size:48px">Hello, admin.</span>
-				</article>
+		<header><h3>Profiles</h3></header>
+		<div class="module_content">
+
+			<div class="ticket-info-top">
+				<h1></h1>	
+				<div class="info-top-left">
+					<p><img src="images/concerts/${order.concertId }.jpg" width="188" height="284" alt=""></p>	
+				</div>
+				<div class="iofo-top-right">
+						<span class="former">Order No.:${order.id }</span><br/>
+						<span class="former">Price: ${order.tPrice }</span><br/>
+						<span class="former">Create on: ${order.createTime }</span><br/>
+						<span class="former">Paid on: 
+							<c:if test="${null ne order.payTime }">${order.payTime }</c:if>
+							<c:if test="${null eq order.payTime }">Not paid yet.</c:if>
+						</span><br/>
+						<span class="former">Status: 
+							<c:if test="${'0' eq order.status }">Waiting for pay</c:if>
+							<c:if test="${'1' eq order.status }">Finish</c:if>
+							<c:if test="${'2' eq order.status }">Cancelled</c:if>
+						</span><br/>
+						<span class="former">Ticket(s):</span><br/>
+						<c:forEach var="detail" items="${order.detail }" varStatus="obj">
+						<span class="former">${obj.count}. Area:${detail.ticket.areaName } Seat:${detail.ticket.code } Price:${detail.finalPrice }</span><br/>
+						</c:forEach>						
+					<c:if test="${'0' eq edit}">
+						<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/><c:param name="edit" value="1"/></c:url>
+						<a class="a-btn" href="${userinfo }">Edit</a>
+						<a class="a-btn" href="user/user_center.jsp">Back</a>
+					</c:if>
+					<c:if test="${'1' eq edit}">
+						<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/></c:url>
+						<button class="a-btn" type="submit" form="user">Confirm</button>
+						<a class="a-btn" href="${userinfo }">Cancel</a>
+					</c:if>
+				</div>
 				<div class="clear"></div>
 			</div>
-		</article><!-- end of stats article -->
+
+
+		</div>
 		
-	<article class="control">
-		<div class="control_wrapper">
-		<c:url var="concertslist" value="admin/concertslist"><c:param name="id" value="1"/></c:url>
-		<a href="${concertslist}">
-			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
-				<article class="flipper">
-					<article class="front">
-						<article class="control_content">
-							<span class="centre font_big">Concert Manage</span>
-						</article>
-					</article>
-					<article class="back">
-						<article class="control_content">
-							<span class="centre font_small">We have 138,037 concerts now.</span>
-						</article>
-					</article>
-				</article>
-			</article>
-		</a>
-		</div>
-		<div class="control_wrapper">
-		<a href="https://www.google.com.tw">
-			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
-				<article class="flipper">
-					<article class="front">
-						<article class="control_content">
-							<span class="centre font_big">Stadium Manage</span>
-						</article>
-					</article>
-					<article class="back">
-						<article class="control_content">
-							<span class="centre font_small">We have 2,048 stadiums now.</span>
-						</article>
-					</article>
-				</article>
-			</article>
-		</a>
-		</div>		<div class="control_wrapper">
-		<a href="https://www.google.com.tw">
-			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
-				<article class="flipper">
-					<article class="front">
-						<article class="control_content">
-							<span class="centre font_big">Admin Manage</span>
-						</article>
-					</article>
-					<article class="back">
-						<article class="control_content">
-							<span class="centre font_small">Do some recruiting.</span>
-						</article>
-					</article>
-				</article>
-			</article>
-		</a>
-		</div>		<div class="control_wrapper">
-		<a href="https://www.google.com.tw">
-			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
-				<article class="flipper">
-					<article class="front">
-						<article class="control_content">
-							<span class="centre font_big">Stastic Report</span>
-						</article>
-					</article>
-					<article class="back">
-						<article class="control_content">
-							<span class="centre font_small">Look fortune we made.</span>
-						</article>
-					</article>
-				</article>
-			</article>
-		</a>
-		</div>
+				
+			<div class="clear"></div>
+			
+		</article><!-- end of styles article -->
+		
+		
 		
 		<div class="clear"></div>
-
-	</article>
+		
+		
+		
 
 		<div class="spacer"></div>
 	</section>
