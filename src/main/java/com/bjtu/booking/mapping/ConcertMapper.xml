@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bjtu.booking.dao.inf.IConcertDAO">
 	<resultMap type="com.bjtu.booking.bean.Concert" id="concert">
 		<id column="id" property="id"/>
@@ -20,6 +20,11 @@
     <select id="getStadiumName" parameterType="int" resultType="String">
     	<![CDATA[
     		SELECT name FROM stadium WHERE id = #{id}
+    	]]>
+    </select>
+    <select id="getLatest3Concert" resultMap="concert">
+    	<![CDATA[
+    		SELECT * FROM concert ORDER BY open_time DESC LIMIT 0,3
     	]]>
     </select>
 </mapper>

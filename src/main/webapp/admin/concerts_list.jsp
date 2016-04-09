@@ -191,7 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="clear"></div>
 
 			<div style="float: left">
-			<a href="../admin/concert_basic.html" class="a-btn animate " style="margin-left: 40px;margin-bottom: 16px" >
+			<a href="../admin/concert_basic.jsp" class="a-btn animate " style="margin-left: 40px;margin-bottom: 16px" >
 				<span class="a-btn-text" style="width: 75px;">Add New</span>
 				<span class="a-btn-slide-text">Add New!</span>
 				<span class="a-btn-icon-right"><span></span></span>

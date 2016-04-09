@@ -1,7 +1,8 @@
 package com.bjtu.booking.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bjtu.booking.bean.Stadium;
 import com.bjtu.booking.foo.Foo;
+import com.bjtu.booking.service.StadiumService;
 
 /**
  * Stadium Controller
@@ -31,6 +33,9 @@ public class StadiumController {
 	 */
 	Foo foo = new Foo();
 	
+	@Resource
+	private StadiumService stadiumService;
+	
 	/**
 	 * Method to get stadium list, no limitation now
 	 */	
@@ -38,14 +43,7 @@ public class StadiumController {
 	public ModelAndView getStadiumList(ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
 		
-		if(1 == debug){
-			System.out.println("==[" + this.getClass().getName() + "]==");
-			System.out.println("Requesting Stadium List");
-		}
-		
-		List<Stadium> list = new ArrayList<Stadium>();
-		list = foo.getStadiumList();
-		
+		List<Stadium> list = stadiumService.getStadiumList();
 		modelMap.addAttribute("list", list);
 		view.setViewName("user/stadium");
 		return view;

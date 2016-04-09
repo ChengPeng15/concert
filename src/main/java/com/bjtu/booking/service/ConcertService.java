@@ -17,13 +17,10 @@ public class ConcertService {
 	
 	public List<Concert> getConcertList(){
 		List<Concert> list = concertDAO.getConcertList();
-		if(null != list) {
-			System.out.println("result is not null");
-			for(Concert c : list) {
-				System.out.println(c.getTitle());
-				System.out.println(c.getStadiumName() + "======");
-			}
-		}
-		return null;
+		return list;
+	}
+	
+	public List<Concert> getLatest3Concert(){
+		return concertDAO.getLatest3Concert();
 	}
 }

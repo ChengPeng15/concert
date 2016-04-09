@@ -7,5 +7,6 @@ import com.bjtu.booking.bean.Concert;
 public interface IConcertDAO {
 	
 	List<Concert> getConcertList();
+	List<Concert> getLatest3Concert();
 
 }
