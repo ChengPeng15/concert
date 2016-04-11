@@ -147,139 +147,66 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</article><!-- end of news -->
 		
 		<article class="module width_full">
-		<header><h3 class="tabs_involved">Concerts</h3>
-		<ul class="tabs">
-   			<li><a href="#tab1">Pop music</a></li>
-    		<li><a href="#tab2">Rock</a></li>
-		</ul>
-		</header>
-
+			<header>
+				<h3 class="tabs_involved">Concerts</h3>
+				<ul class="tabs">
+	   				<li><a href="concert/list">more</a></li>
+				</ul>
+			</header>
 		<div class="tab_container">
-			<div id="tab1" class="tab_content">
-			<table class="tablesorter" cellspacing="0"> 
-			<thead> 
-				<tr> 
-   					<th></th> 
-    				<th></th> 
-    				<th></th> 
-    				<th></th> 
-    				<td><a href="concert/list">more</a></td> 
-				</tr> 
-			</thead> 
-			<tbody> 
-				<tr> 
-   					<td>
-   						<a class="img" href="concert/info/1"><img src="images/concerts/1.jpg" width="160" height="220" alt="周杰伦2016“地表最强”世界巡回演唱会" title="周杰伦2016“地表最强”世界巡回演唱会" /></a>
-   						<div class="inf">
-	   						<span class="ml10"> 周杰伦2016“地表最强”世界巡回演唱会</span>
-	   						<p>时间：2016.07.01-2016.07.03 <br/>
-	   						<span class="ml20" >场馆：五棵松体育馆</span>
-					        </p>
-   						</div>
-   					</td> 
-    				<td>
-    					<a class="img" href="concert/info/2"><img src="images/concerts/2.jpg" width="160" height="220" alt="陈奕迅 ANOTHER EASON’S LIFE 演唱会" title="陈奕迅 ANOTHER EASON’S LIFE 演唱会" /></a>
-    					<div class="inf">
-	   						<span class="ml10"> 陈奕迅 ANOTHER EASON’S LIFE 演唱会</span>
-	   						<p>时间：2016.10.22  <br/>
-	   						<span class="ml20" >场馆：鸟巢体育馆</span>
-					        </p>
-   						</div>
-    				</td> 
-    				<td>
-    					<a class="img" href=""><img src="images/concerts/3.jpg" width="160" height="220" alt="张信哲《还爱·光年》世界巡回演唱会" title="张信哲《还爱·光年》世界巡回演唱会" /></a>
-    					<div class="inf">
-	   						<span class="ml10"> 张信哲《还爱·光年》世界巡回演唱会</span>
-	   						<p>时间：2016.04.30 <br/>
-	   						<span class="ml20" >场馆：乐视体育生态中心</span>
-					        </p>
-   						</div>
-    				</td> 
-    				
-				</tr> 
-
-				
-			</tbody> 
-			</table>
-			</div><!-- end of #tab1 -->
-			
-			<div id="tab2" class="tab_content">
-			<table class="tablesorter" cellspacing="0"> 
-			<thead> 
-				<tr> 
-   					<th></th> 
-    				<th></th> 
-    				<th></th> 
-    				<th></th> 
-    				<td><a href="concert/list">more</a></td> 
-				</tr> 
-			</thead> 
-			<tbody> 
-				<tr> 
-   					<td>
-   						<a class="img" href=""><img src="images/concerts/4.jpg" 
-	   					width="160" height="220"	alt="逃跑计划2016巡回演唱会" title="逃跑计划2016巡回演唱会" /></a>
-   						<div class="inf">
-	   						<span class="ml10"> 逃跑计划2016巡回演唱会</span>
-	   						<p>时间：2016.06.26 <br/>
-	   						<span class="ml20" >场馆：五棵松体育馆</span>
-					        </p>
-   						</div>
-   					</td> 
-
-    				<td>
-   						<a class="img" href=""><img src="images/concerts/5.jpg" 
-	   					width="160" height="220"	alt="Iron Maiden铁娘子乐队“灵魂之书”2016年世界巡演" title="Iron Maiden铁娘子乐队“灵魂之书”2016年世界巡演" /></a>
-   						<div class="inf">
-	   						<span class="ml10"> Iron Maiden铁娘子乐队“灵魂之书”2016年世界巡演</span>
-	   						<p>时间：2016.04.24<br/>
-	   						<span class="ml20" >场馆：乐视体育生态中心</span>
-					        </p>
-   						</div>
-   					</td>  
-    				
-				
-			</tbody> 
-			</table>
-
-			</div><!-- end of #tab2 -->
-			
-		</div><!-- end of .tab_container -->
+			<c:if test="${null ne concerts }">
+				<c:forEach var="concert" items="${concerts }">
+					<a href="user/concert/${concert.id }">
+						<div class="list" style="width:auto; float:left; margin:5px">
+							<img src="images/concerts/${concert.id }.jpg" width="160" height="220" alt="${concert.title }" />
+							<br/>
+							<span class="centre">
+								${concert.title }<br/>
+								${concert.open }<br/>
+								${concert.end }<br/>
+								Ticket:${concert.total - concert.sold }/${concert.total } (Available/Total)
+							</span>
+						</div>
+					</a>
+				</c:forEach>
+			</c:if>
+			<c:if test="${null eq concerts }">
+				<span class="centre">No concert for now.</span>
+			</c:if>
+		</div>
+		<div class="clear"></div>
 		
 		</article><!-- end of content manager article -->
 
 		<!-- start the stadiums -->
 		<article class="module width_full">
-			<header><h3>Stadiums</h3></header>
-			<div class="module_content">
-				<article class="stats_graph">
-					<table class="tablesorter" cellspacing="0">
-						<tbody>
-						<tr>
-							<td><a href="stadium/list">more</a></td>
-						</tr>
-						<tr>
-							<td>
-							<a href=""><img src="images/stadiums/3.jpg" width="260" height="140" alt="五棵松体育馆" value="五棵松体育馆" /></a>
-							<h3>五棵松体育馆</h3>
-							</td>
-							<td>
-							<a href=""><img src="images/stadiums/2.jpg" width="260" height="140" alt="工人体育馆" value="工人体育馆"/></a>
-							<h3>工人体育馆</h3>
-							</td>
-							<td>
-							<a href=""><img src="images/stadiums/1.jpg" width="260" height="140" alt="鸟巢体育馆" value="鸟巢体育馆"/></a>
-							<h3>鸟巢体育馆</h3>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</article>
-				
-				
-				
-				<div class="clear"></div>
+			<header>
+				<h3 class="tabs_involved">Stadiums</h3>
+				<ul class="tabs">
+	   				<li><a href="stadium/list">more</a></li>
+				</ul>
+			</header>
+			<div class="tab_container">
+				<c:if test="${null ne stadiums }">
+					<c:forEach var="stadium" items="${stadiums }">
+						<a href="user/stadium/${stadium.id }">
+							<div class="list" style="width:auto; float:left; margin:5px">
+								<img src="images/stadiums/${stadium.id }.jpg" width="160" height="220" alt="${stadium.name }" />
+								<br/>
+								<span class="centre">
+									${stadium.name }<br/>
+									${stadium.address }<br/>
+									${stadium.total } Seats
+								</span>
+							</div>
+						</a>
+					</c:forEach>
+				</c:if>
+				<c:if test="${null eq stadiums }">
+					<span class="centre">No stadium for now.</span>
+				</c:if>
 			</div>
+			<div class="clear"></div>
 		</article>
 		
 		
