@@ -8,5 +8,5 @@ public interface IConcertDAO {
 	
 	List<Concert> getConcertList();
 	List<Concert> getLatest3Concert();
-
+	Concert getConcertById(int id);
 }

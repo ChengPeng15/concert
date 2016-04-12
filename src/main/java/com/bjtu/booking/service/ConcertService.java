@@ -23,4 +23,8 @@ public class ConcertService {
 	public List<Concert> getLatest3Concert(){
 		return concertDAO.getLatest3Concert();
 	}
+	
+	public Concert getConcertById(int id){
+		return concertDAO.getConcertById(id);
+	}
 }

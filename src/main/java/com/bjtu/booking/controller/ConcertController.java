@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjtu.booking.bean.Concert;
-import com.bjtu.booking.foo.Foo;
 import com.bjtu.booking.service.ConcertService;
 
 
@@ -28,11 +27,6 @@ public class ConcertController {
 	 * Enable console output if set 1
 	 */
 	private int debug = 1;
-	
-	/**
-	 * All things needed behind controller
-	 */
-	Foo foo = new Foo();
 	
 	@Resource
 	private ConcertService concertService;
@@ -71,8 +65,7 @@ public class ConcertController {
 		 * Area list entity
 		 * should contains area id, name, total tickets and sold tickets for each area entity
 		 */
-		Concert conct = new Concert();
-		conct = foo.getConcertDetail(id);
+		Concert conct = concertService.getConcertById(id);
 
 		if (null == conct || conct.getAreas().isEmpty()) {
 			view.setViewName("error");

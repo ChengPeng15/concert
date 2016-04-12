@@ -12,6 +12,25 @@
 		<result property="sold" column="sold_seat"/>
 		<association property="stadiumName" column="stadium_id" javaType="java.lang.String" select="getStadiumName"></association>
 	</resultMap>
+	<resultMap type="com.bjtu.booking.bean.Concert" id="concertInfo">
+		<id column="id" property="id"/>
+		<result property="stadiumId" column="stadium_id"/>
+		<result property="title" column="title"/>
+		<result property="intro" column="introduction"/>
+		<result property="open" column="open_time"/>
+		<result property="end" column="end_time"/>
+		<result property="total" column="total_seat"/>
+		<result property="sold" column="sold_seat"/>
+		<association property="stadiumName" column="stadium_id" javaType="java.lang.String" select="getStadiumName"></association>
+		<collection property="areas" ofType="com.bjtu.booking.bean.Area" javaType="ArrayList" column="id" select="getAreasByConcert"></collection>
+	</resultMap>
+	<resultMap type="com.bjtu.booking.bean.Area" id="area">
+		<id column="id" property="id"/>
+		<result property="concertId" column="concert_id"/>
+		<result property="name" column="area"/>
+		<result property="total" column="total_seat"/>
+		<result property="sold" column="sold_seat"/>
+	</resultMap>
     <select id="getConcertList" resultMap="concert">
         <![CDATA[
             SELECT * FROM concert
@@ -25,6 +44,17 @@
     <select id="getLatest3Concert" resultMap="concert">
     	<![CDATA[
     		SELECT * FROM concert ORDER BY open_time DESC LIMIT 0,3
+    	]]>
+    </select>
+    <select id="getConcertById" parameterType="int" resultMap="concertInfo">
+    	<![CDATA[
+    		SELECT * FROM concert WHERE id = #{id}
+    	]]>
+    </select>
+    
+    <select id="getAreasByConcert" parameterType="int" resultMap="area">
+    	<![CDATA[
+    		SELECT * FROM concert_area WHERE concert_id = #{concert_id}
     	]]>
     </select>
 </mapper>
