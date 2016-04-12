@@ -33,7 +33,7 @@
 	</resultMap>
     <select id="getConcertList" resultMap="concert">
         <![CDATA[
-            SELECT * FROM concert
+            SELECT * FROM concert WHERE open_time > #{current}
         ]]> 
     </select>
     <select id="getStadiumName" parameterType="int" resultType="String">
@@ -43,7 +43,7 @@
     </select>
     <select id="getLatest3Concert" resultMap="concert">
     	<![CDATA[
-    		SELECT * FROM concert ORDER BY open_time DESC LIMIT 0,3
+    		SELECT * FROM concert WHERE open_time > #{current} ORDER BY open_time ASC LIMIT 0,3
     	]]>
     </select>
     <select id="getConcertById" parameterType="int" resultMap="concertInfo">

@@ -1,5 +1,6 @@
 package com.bjtu.booking.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,12 +17,12 @@ public class ConcertService {
 	private IConcertDAO concertDAO;
 	
 	public List<Concert> getConcertList(){
-		List<Concert> list = concertDAO.getConcertList();
+		List<Concert> list = concertDAO.getConcertList(new Date());
 		return list;
 	}
 	
 	public List<Concert> getLatest3Concert(){
-		return concertDAO.getLatest3Concert();
+		return concertDAO.getLatest3Concert(new Date());
 	}
 	
 	public Concert getConcertById(int id){

@@ -8,6 +8,24 @@
 		<result column="total_seat" property="total"/>
 		<result column="introduction" property="intro"/>
 	</resultMap>
+	<resultMap type="com.bjtu.booking.bean.Stadium" id="stadium_info">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="address" property="address"/>
+		<result column="total_seat" property="total"/>
+		<result column="introduction" property="intro"/>
+		<collection property="concerts" ofType="com.bjtu.booking.bean.Concert" javaType="ArrayList" column="id" select="getStadiumConcert"></collection>
+	</resultMap>
+	<resultMap type="com.bjtu.booking.bean.Concert" id="concert_list">
+		<id column="id" property="id"/>
+		<result property="stadiumId" column="stadium_id"/>
+		<result property="title" column="title"/>
+		<result property="intro" column="introduction"/>
+		<result property="open" column="open_time"/>
+		<result property="end" column="end_time"/>
+		<result property="total" column="total_seat"/>
+		<result property="sold" column="sold_seat"/>
+	</resultMap>
 	<select id="getStadiumList" resultMap="stadium_list">
 		<![CDATA[
 			SELECT * FROM stadium;
@@ -16,6 +34,16 @@
 	<select id="getTop3Stadium" resultMap="stadium_list">
 		<![CDATA[
 			SELECT * FROM stadium LIMIT 0,3;
+		]]>
+	</select>
+	<select id="getStadiumById" resultMap="stadium_info">
+		<![CDATA[
+			SELECT * FROM stadium WHERE id = #{id};
+		]]>
+	</select>
+	<select id="getStadiumConcert" resultMap="concert_list">
+		<![CDATA[
+			SELECT * FROM concert WHERE stadium_id = #{id} and open_time > now()
 		]]>
 	</select>
 </mapper>

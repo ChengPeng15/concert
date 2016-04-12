@@ -189,7 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="tab_container">
 				<c:if test="${null ne stadiums }">
 					<c:forEach var="stadium" items="${stadiums }">
-						<a href="user/stadium/${stadium.id }">
+						<a href="stadium/info/${stadium.id }">
 							<div class="list" style="width:auto; float:left; margin:5px">
 								<img src="images/stadiums/${stadium.id }.jpg" width="160" height="220" alt="${stadium.name }" />
 								<br/>

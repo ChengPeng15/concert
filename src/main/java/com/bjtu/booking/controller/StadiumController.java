@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjtu.booking.bean.Stadium;
-import com.bjtu.booking.foo.Foo;
 import com.bjtu.booking.service.StadiumService;
 
 /**
@@ -27,11 +26,6 @@ public class StadiumController {
 	 * Enable console output if set 1
 	 */
 	private int debug = 1;
-	
-	/**
-	 * All things needed behind controller
-	 */
-	Foo foo = new Foo();
 	
 	@Resource
 	private StadiumService stadiumService;
@@ -69,8 +63,7 @@ public class StadiumController {
 		 * Concert list entity
 		 * should contains concert id, title, open time, end time, total tickets and sold tickets for each concert entity
 		 */
-		Stadium stadm = new Stadium();
-		stadm = foo.getStadiumDetail(id);
+		Stadium stadm = stadiumService.getStadiumById(id);
 
 		if (null == stadm) {
 			view.setViewName("error");

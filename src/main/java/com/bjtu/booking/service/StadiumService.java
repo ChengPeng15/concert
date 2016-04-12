@@ -1,5 +1,6 @@
 package com.bjtu.booking.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,5 +22,9 @@ public class StadiumService {
 	
 	public List<Stadium> getTop3Stadium(){
 		return stadiumDAO.getTop3Stadium();
+	}
+	
+	public Stadium getStadiumById(int id){
+		return stadiumDAO.getStadiumById(id, new Date());
 	}
 }
