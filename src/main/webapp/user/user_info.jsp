@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Concert Detail</title>
+	<title>Your Profile</title>
 	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<style type="text/css">

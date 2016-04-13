@@ -5,14 +5,20 @@
 String ctxPath = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+ctxPath+"/";
 %>
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
+	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Concert Detail</title>
 	
-	<link rel="stylesheet" href="../css/layout.css" type="text/css" media="screen" />
+	<c:if test="${0 eq edit }">
+		<title>Add Concert</title>
+	</c:if>
+	<c:if test="${1 eq edit }">
+		<title>Edit Concert</title>
+	</c:if>
+	
+	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<style type="text/css">
 	.ml20{color:red;font-size: 13px;}
 	.ml10{color:#999;font-size: 16px;font-weight: bold;}
@@ -22,10 +28,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<script src="../js/jquery-1.5.2.min.js"  type="text/javascript"></script>
-	<script src="../js/hideshow.js" type="text/javascript"></script>
-	<script src="../js/jquery.tablesorter.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="../js/jquery.equalHeight.js"></script>
+	<script src="js/jquery-1.5.2.min.js"  type="text/javascript"></script>
+	<script src="js/hideshow.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() 
     	{ 
@@ -133,54 +139,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
 	
 		<article class="module width_full">
-		<header><h3>Tickets Details</h3></header>
+		<header>
+			<c:if test="${0 eq edit }">
+				<h3>Add Concert</h3>
+			</c:if>
+			<c:if test="${1 eq edit }">
+				<h3>Edit Concert</h3>
+			</c:if>
+		</header>
 		<div class="module_content">
 
 			<div class="ticket-info-top">
-				<h1>Concent Basic Information</h1>	
-				<div class="info-top-left">
-					<p style="margin-left: 12%"><img src="../images/concerts/3.jpg" width="186" height="210" alt=""></p>	
-				</div>
-				<div class="iofo-top-right">
-					<ul class="top-right" style="list-style-type: none;">
-						<br/><br/>
-						<li ><p id="sidebar"><h3>Concent Name：<input type="text" style="width: 42%"></input></h3></p></li>
-						<li><p id="sidebar"><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show Time：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width: 42%"></input></h3></p></li>
-						<li><p id="sidebar"><h3 style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Address：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width: 42%"></input></h3></p></li>
-						<li><p id="sidebar"><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stadium：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width: 42%"></input></h3></p></li>
-						
-						
-						
-					</ul>
-					
-				</div>
+				<h1>Concert Info</h1>	
+					<form id="concert" action="admin/editconcert" method="post">
+					<div class="info-top-left">
+						<p>
+							<c:if test="${0 eq edit }">
+								<img src="images/concerts/upload.png" alt="Upload Poster">
+							</c:if>
+							<c:if test="${1 eq edit }">
+								<img src="images/concerts/${concert.id }.jpg" width="188" height="284" alt="">
+							</c:if>
+						</p>
+						<br/>
+						<input name="poster" type="file" accept="image/*"/>	
+					</div>
+					<div class="iofo-top-right">
+						<input id="id" name="id" value="${concert.id }" hidden="true" />
+							<span class="former">Title:<input name="Title" type="text" value="${concert.title }"/></span><br/>
+							<!-- need a select -->
+							<span class="former">Stadium:<input name="stadiumName" type="text" value="${concert.stadiumName }"/></span><br/>
+							<span class="former">Open:<input name="open" type="text" value="${concert.open }"/></span><br/>
+							<span class="former">End:<input name="end" type="text" value="${concert.end }"/></span><br/>
+							<c:if test="${'1' eq edit}"><span class="former">Total Tickets:<input name="total" type="text" value="${concert.total }" disabled="disabled"/></span><br/></c:if>
+							<c:if test="${'1' eq edit}"><span class="former">Sold Tickets:<input name="sold" type="text" value="${concert.sold }" disabled="disabled"/></span></c:if>
+							<c:if test="${'0' eq edit}"><span class="former">Seatmap:<input name="seatmap" type="file" accept=".xls,.xlsx"/></span></c:if>
+					</div>
+					</form>
 				<div class="clear"></div>
 			</div>
 			<div class="ticket-info-mid">
-
-			<fieldset>
-				<label>Content</label>
-				<textarea rows="12"></textarea>
-			</fieldset>
-		</div>
+				<fieldset>
+					<label class="former">Intro:</label>
+					<textarea class="former" form="concert" rows="4">${concert.intro }</textarea>
+				</fieldset>
+			</div>
 			<br/>
-			<!--<div class="btn_view_site" style="margin-left: 240px;margin-bottom: 10px"><a href="http://www.medialoot.com">Next</a></div>
-			<div class="btn_view_site" style="margin-left: 230px"><a href="http://www.medialoot.com">Cancel</a></div>
-			-->
-			<table><tr><td>
-			<a href="../admin/concert_basic_cfm.html" class="a-btn animate " style="margin-left: 180px" >
-				<span class="a-btn-text" style="width: 75px;">Next</span>
-				<span class="a-btn-slide-text">go on</span>
-				<span class="a-btn-icon-right"><span></span></span>
-			</a></td><td>
-			<a href="javascript:history.back()" class="a-btn animate " style="margin-left: 180px" >
-				<span class="a-btn-text" style="width: 75px;">Cancel</span>
-				<span class="a-btn-slide-text">Back</span>
-				<span class="a-btn-icon-right"><span></span></span>
-			</a></td>
-			</table>>	
+			<!--TODO: seat map here-->
+			<c:if test="${'0' eq edit}">
+				<button class="a-btn" type="submit" form="concert">Add</button>
+				<a class="a-btn" href="admin/concertslist">Cancel</a>
+			</c:if>
+			<c:if test="${'1' eq edit}">
+				<button class="a-btn" type="submit" form="concert">Edit</button>
+				<a class="a-btn" href="admin/concertslist">Cancel</a>
+			</c:if>
 			<div class="clear"></div>
-			<br/>
+		</div>
 			
 		</article><!-- end of styles article -->
 				

@@ -5,14 +5,14 @@
 String ctxPath = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+ctxPath+"/";
 %>
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
+	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
 	<title>Concert List</title>
 	
-	<link rel="stylesheet" href="../css/layout.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<style type="text/css">
 	.ml20{color:red;font-size: 13px;}
 	.ml10{color:#999;font-size: 16px;font-weight: bold;}
@@ -22,10 +22,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<script src="../js/jquery-1.5.2.min.js"  type="text/javascript"></script>
-	<script src="../js/hideshow.js" type="text/javascript"></script>
-	<script src="../js/jquery.tablesorter.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="../js/jquery.equalHeight.js"></script>
+	<script src="js/jquery-1.5.2.min.js"  type="text/javascript"></script>
+	<script src="js/hideshow.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() 
     	{ 
@@ -133,76 +133,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
 	
 		<article class="module width_full">
-		<header><h3>Concetrts</h3></header>
+		<header><h3>Concerts Manage</h3></header>
 		<div class="module_content">
-			<h1>Concerts Manage</h1>
-			
 			<div id="tab1" class="tab_content">
-			
-			<div class="inf" style="float: left;">
-
-				<table>
-					<tbody>
-					<tr>
-					<td>
-					<div style="margin-left: 0">
-						<p style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </p>
-					<td>
-					<a href="../admin/concert_basic.html" class="a-btn animate " style="margin-left: 130px" >
-						<span class="a-btn-text" style="width: 75px;">Manage</span>
-						<span class="a-btn-slide-text">Change!</span>
-						<span class="a-btn-icon-right"><span></span></span>
-					</a>
+				<a href="admin/getconcert">
+					<div class="list" style="background:#dddddd">	
+						<span class="centre" style="font-size:30px">
+							Add New
+						</span>
+					<div class="clear"></div>
 					</div>
-					<br/>
-					</td>
-					</tr>
-					<tr>
-					<td>
-					<div style="margin-left: 0">
-						<p style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </p>
-					<td>
-					<a href="../admin/concert_basic.html" class="a-btn animate " style="margin-left: 130px" >
-						<span class="a-btn-text" style="width: 75px;">Manage</span>
-						<span class="a-btn-slide-text">Change!</span>
-						<span class="a-btn-icon-right"><span></span></span>
-					</a>
-
+				</a>
+				<div class="clear"></div>
+				<c:forEach var="concert" items="${list }">
+					<c:url value="admin/getconcert" var="getconcert"><c:param name="id" value="${concert.id }"/></c:url>
+					<a href="${getconcert}">
+					<div class="list">	
+						<div class="list_pic">
+							<img src="images/concerts/${concert.id}.jpg" height="150" alt="${concert.title }">
+						</div>
+						<div class="list_content" style="height:150px; line-height:150px">
+							<span class="centre" style="font-size:1.5vw">
+								${concert.title }<br>
+								${concert.open } - ${concert.end }<br>
+								${concert.stadiumName }<br>
+								${concert.total - concert.sold } / ${concert.total }
+							</span>
+						</div>
+						<div class="clear"></div>
 					</div>
-					<br/>
-					</td>
-					</tr>
-					<tr>
-					<td>
-					<div style="margin-left: 0">
-						<p style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </p>
-					</div>
-					<td>
-					<a href="../admin/concert_basic.html" class="a-btn animate " style="margin-left: 130px" >
-						<span class="a-btn-text" style="width: 75px;">Manage</span>
-						<span class="a-btn-slide-text">Change!</span>
-						<span class="a-btn-icon-right"><span></span></span>
 					</a>
-					</td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="clear"></div>
-
-			<div style="float: left">
-			<a href="../admin/concert_basic.jsp" class="a-btn animate " style="margin-left: 40px;margin-bottom: 16px" >
-				<span class="a-btn-text" style="width: 75px;">Add New</span>
-				<span class="a-btn-slide-text">Add New!</span>
-				<span class="a-btn-icon-right"><span></span></span>
-			</a>
-			<br/><br/><br/><br/>
-			</div>
-			
+					<div class="clear"></div>
+				</c:forEach>
+			</div>			
 		</div>
-				
-			<div class="clear"></div>
-			
+		<div class="clear"></div>
 		</article><!-- end of styles article -->
 		
 		<div class="clear"></div>

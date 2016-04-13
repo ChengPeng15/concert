@@ -130,8 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	<article class="control">
 		<div class="control_wrapper">
-		<c:url var="concertslist" value="admin/concertslist"><c:param name="id" value="1"/></c:url>
-		<a href="${concertslist}">
+		<a href="admin/concertslist">
 			<article class="flip-container" ontouchstart="this.classList.toggle('hover');">
 				<article class="flipper">
 					<article class="front">
