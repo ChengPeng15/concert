@@ -293,7 +293,7 @@ public class Foo {
 		Ticket ticket = new Ticket();
 		
 		ticket.setAreaName("Area " + id);
-		ticket.setCode(id * 100 + id);
+		ticket.setCode(id * 100 + id + "");
 		
 		return ticket;
 	}

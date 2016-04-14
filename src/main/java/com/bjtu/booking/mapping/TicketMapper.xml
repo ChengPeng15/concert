@@ -16,9 +16,16 @@
 			SELECT * FROM ticket WHERE area_id = #{area_id} ORDER BY y_value, x_value ASC
 		]]>
 	</select>
-	<select id="getAreaName">
+	<select id="getAreaName" resultType="String">
 		<![CDATA[
 			SELECT area FROM concert_area WHERE id = #{area_id}
 		]]>
 	</select>
+	<select id="getTotalPrice">
+		SELECT SUM(price) FROM ticket WHERE id in 
+			<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+			#{item}
+			</foreach>>
+	</select>
+	
 </mapper>

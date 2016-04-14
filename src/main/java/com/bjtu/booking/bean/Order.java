@@ -11,7 +11,7 @@ public class Order implements Serializable {
 	private int userId;
 	private int concertId;
 	private String concertName;
-	private float tPrice;
+	private double tPrice;
 	private int status;
 	private Timestamp createTime;
 	private Timestamp payTime;
@@ -50,11 +50,11 @@ public class Order implements Serializable {
 		this.concertName = concertName;
 	}
 
-	public float gettPrice() {
+	public double gettPrice() {
 		return tPrice;
 	}
 
-	public void settPrice(float tPrice) {
+	public void settPrice(double tPrice) {
 		this.tPrice = tPrice;
 	}
 

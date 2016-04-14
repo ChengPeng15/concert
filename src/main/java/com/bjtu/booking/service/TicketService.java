@@ -5,9 +5,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.bjtu.booking.bean.Ticket;
 import com.bjtu.booking.dao.inf.ITicketDAO;
 
+@Service
 public class TicketService {
 	
 	@Resource
@@ -21,11 +24,9 @@ public class TicketService {
 			List<Ticket> row = null;
 			for(Ticket ticket : linearSeats){
 				if(tmpY != ticket.getYValue()){
-					if(null != row) {
-						result.add(row);
-					}
 					tmpY = ticket.getYValue();
 					row = new ArrayList<Ticket>();
+					result.add(row);
 				}
 				if(null != row) {
 					row.add(ticket);

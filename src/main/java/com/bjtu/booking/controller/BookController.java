@@ -3,6 +3,8 @@ package com.bjtu.booking.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,7 @@ public class BookController {
 	
 	Foo foo = new Foo();
 	
+	@Resource
 	private TicketService ticketService;
 	
 	/**
