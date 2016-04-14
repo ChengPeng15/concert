@@ -13,6 +13,7 @@ import com.bjtu.booking.bean.Order;
 import com.bjtu.booking.bean.OrderDetail;
 import com.bjtu.booking.bean.Ticket;
 import com.bjtu.booking.foo.Foo;
+import com.bjtu.booking.service.TicketService;
 
 /**
  * Book Controller
@@ -29,6 +30,8 @@ public class BookController {
 	private int debug = 1;
 	
 	Foo foo = new Foo();
+	
+	private TicketService ticketService;
 	
 	/**
 	 * Method to get seats map data
@@ -48,8 +51,7 @@ public class BookController {
 		 * Break area tickets into rows for front end use
 		 * Each ticket entity should contains ticket id, price and status
 		 */
-		List<List<Ticket>> seats = new ArrayList<List<Ticket>>();
-		seats = foo.getSeatMap(id);
+		List<List<Ticket>> seats = ticketService.getTicketByAreaId(id);
 		
 		if (seats.isEmpty()){
 			view.setViewName("error");

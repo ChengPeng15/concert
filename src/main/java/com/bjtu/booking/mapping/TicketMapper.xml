@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjtu.booking.dao.inf.ITicketDAO">
+	<resultMap type="com.bjtu.booking.bean.Ticket" id="tickets">
+		<id column="id" property="id"/>
+		<result column="code" property="code"/>
+		<result column="x_value" property="xValue"/>
+		<result column="y_value" property="yValue"/>
+		<result column="price" property="price"/>
+		<result column="area_id" property="areaId"/>
+		<result column="status" property="status"/>
+		<association property="areaName" column="area_id" javaType="String" select="getAreaName"></association>
+	</resultMap>
+	<select id="getTicketByArea" resultMap="tickets">
+		<![CDATA[
+			SELECT * FROM ticket WHERE area_id = #{area_id} ORDER BY y_value, x_value ASC
+		]]>
+	</select>
+	<select id="getAreaName">
+		<![CDATA[
+			SELECT area FROM concert_area WHERE id = #{area_id}
+		]]>
+	</select>
+</mapper>

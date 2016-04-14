@@ -7,7 +7,9 @@ public class Ticket implements Serializable {
 
 	private int id;
 	private int code;
-	private float price;
+	private int xValue;
+	private int yValue;
+	private double price;
 	private int areaId;
 	private String areaName; // for front end use
 	private int status;
@@ -28,11 +30,11 @@ public class Ticket implements Serializable {
 		this.code = code;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -58,6 +60,22 @@ public class Ticket implements Serializable {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public int getXValue() {
+		return xValue;
+	}
+
+	public void setXvalue(int xValue) {
+		this.xValue = xValue;
+	}
+
+	public int getYValue() {
+		return yValue;
+	}
+
+	public void setYValue(int yValue) {
+		this.yValue = yValue;
 	}
 
 }
