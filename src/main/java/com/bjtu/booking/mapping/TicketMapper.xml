@@ -26,15 +26,15 @@
 			SELECT area FROM concert_area WHERE id = #{area_id}
 		]]>
 	</select>
-	<select id="getTotalPrice">
+	<select id="getTotalPrice" resultType="double">
 		SELECT SUM(price) FROM ticket WHERE id in 
 			<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
 			#{item}
-			</foreach>>
+			</foreach>
 	</select>
 	<update id="bookTickets">
 		<foreach collection="array" item="item" index="index" separator=";">
-			UPDATE ticket SET status=2 WHERE id=#{item}
+			UPDATE ticket SET status=1 WHERE id=#{item}
 		</foreach>
 	</update>
 	<insert id="addTickets" parameterType="com.bjtu.booking.bean.Ticket">

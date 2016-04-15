@@ -1,6 +1,5 @@
 package com.bjtu.booking.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bjtu.booking.bean.Order;
-import com.bjtu.booking.bean.OrderDetail;
 import com.bjtu.booking.bean.Ticket;
 import com.bjtu.booking.foo.Foo;
+import com.bjtu.booking.service.OrderService;
 import com.bjtu.booking.service.TicketService;
 
 /**
@@ -35,6 +34,9 @@ public class BookController {
 	
 	@Resource
 	private TicketService ticketService;
+	
+	@Resource
+	private OrderService orderService;
 	
 	/**
 	 * Method to get seats map data
@@ -84,20 +86,7 @@ public class BookController {
 			System.out.println("Selected Area ID [" + areaId + "]");
 		}
 		
-		int pricecount = 0;
-		Order order = new Order();
-		List<OrderDetail> details = new ArrayList<OrderDetail>();
-		for (int i : ticket) {
-			OrderDetail detail = new OrderDetail();
-			detail.setTicketId(i);
-			detail.setOriginalPrice(i / 100 * 100);
-			detail.setFinalPrice(i / 100 * 100);
-			pricecount += i / 100 * 100;
-			details.add(detail);
-		}
-		order.setConcertId((ticket[0]/100+1)/2);
-		order.setDetail(details);
-		order.settPrice(pricecount);
+		Order order = orderService.createOrder(ticket, conctId);
 		
 		modelMap.addAttribute("preorder", order);
 		

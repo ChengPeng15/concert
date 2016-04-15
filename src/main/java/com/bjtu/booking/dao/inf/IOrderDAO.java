@@ -8,4 +8,5 @@ import com.bjtu.booking.bean.OrderDetail;
 public interface IOrderDAO {
 	int createOrder(Order order);
 	int creatOrderDetails(List<OrderDetail> details);
+	Order getOrderById(int id);
 }

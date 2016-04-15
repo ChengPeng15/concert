@@ -23,16 +23,16 @@ public class OrderService {
 	@Resource
 	private ITicketDAO ticketDAO;
 	
-	public Order createOrder(int[] tickets){
+	public Order createOrder(int[] tickets, int concertId){
 		
 		Order order = new Order();
-		//update ticket status
+		//lock tickets
 		ticketDAO.bookTickets(tickets);
 		
 		//create order
-		order.setUserId(2);
-		//TODO set the concert id
-		order.setConcertId(2);
+		//TODO set the user id
+//		order.setUserId(2);
+		order.setConcertId(concertId);
 		double totalPrice = ticketDAO.getTotalPrice(tickets);
 		order.settPrice(totalPrice);
 		order.setStatus(0);
@@ -52,6 +52,7 @@ public class OrderService {
 		}
 		orderDAO.creatOrderDetails(details);
 		
-		return order;
+		order.setDetail(details);
+		return orderDAO.getOrderById(order.getId());
 	}
 }
