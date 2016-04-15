@@ -79,4 +79,11 @@ public class OrderService {
 		return true;
 	}
 	
+	public List<Order> getUserOrders(int userId){
+		return orderDAO.getAllOrder();
+	}
+	
+	public Order getOrderDetail(int orderId){
+		return orderDAO.getOrderById(orderId);
+	}
 }

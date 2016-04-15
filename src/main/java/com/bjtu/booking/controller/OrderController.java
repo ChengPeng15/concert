@@ -1,5 +1,7 @@
 package com.bjtu.booking.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bjtu.booking.bean.Order;
 import com.bjtu.booking.foo.Foo;
+import com.bjtu.booking.service.OrderService;
 
 /**
  * Order Controller
@@ -23,6 +26,8 @@ public class OrderController {
 	 */
 	private int debug = 1;
 	
+	@Resource
+	private OrderService orderService;
 	/**
 	 * All things needed behind controller
 	 */
@@ -37,8 +42,7 @@ public class OrderController {
 			System.out.println("Requesting Order Detail - ID [" + id + "]");
 		}
 		
-		Order order = new Order();
-		order = foo.getOrder(id);
+		Order order = orderService.getOrderDetail(id);
 		
 		modelMap.addAttribute("order", order);
 		view.setViewName("/user/user_orderdetail");
