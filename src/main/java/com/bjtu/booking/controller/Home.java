@@ -28,6 +28,8 @@ public class Home {
 		modelMap.put("concerts", latest3Concert);
 		List<Stadium> top3Stadium = stadiumService.getTop3Stadium();
 		modelMap.put("stadiums", top3Stadium);
+		modelMap.put("msgt", "info");
+		modelMap.put("msg", "Hello user.");
 		return "user/home";
 	}
 

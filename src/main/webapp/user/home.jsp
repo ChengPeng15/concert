@@ -102,7 +102,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
+		<c:if test="${null ne msgt }">
+			<h4 class="alert_${msgt }">${msg }</h4>
+		</c:if>
 		
 		<!-- start of News -->
 		<article class="module width_full">

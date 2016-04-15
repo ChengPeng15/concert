@@ -99,7 +99,7 @@ public class BookController {
 	 * 
 	 */
 	@RequestMapping("/pay/{id}")
-	public ModelAndView pay(@PathVariable("id")int orderId){
+	public ModelAndView pay(@PathVariable("id")int orderId, ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
 		
 		if(1 == debug){
@@ -107,7 +107,9 @@ public class BookController {
 			System.out.println("Paying Order ID [" + orderId + "]");
 		}
 		
-		view.setViewName("forward:home");
+		modelMap.put("msgt", "success");
+		modelMap.put("msg", "Order paid.");
+		view.setViewName("user/user_center");
 		return view;
 	}
 }

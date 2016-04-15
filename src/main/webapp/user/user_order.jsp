@@ -133,9 +133,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
 	
 		<article class="module width_full">
-		<header><h3>Concetrts</h3></header>
+		<header><h3>Orders</h3></header>
 		<div class="module_content">
-			<h1>Concerts List</h1>
+			<h1>Orders List</h1>
 			
 			<div id="tab1" class="tab_content">
 				<c:forEach var="order" items="${list }">

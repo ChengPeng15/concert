@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
 	
 		<article class="module width_full">
-		<header><h3>Profiles</h3></header>
+		<header><h3>Order Detail</h3></header>
 		<div class="module_content">
 
 			<div class="ticket-info-top">

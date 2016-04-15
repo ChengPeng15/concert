@@ -117,8 +117,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<c:if test="${null ne pageScope.msgt }">
-			<h4 class="alert_${pageScope.msgt }">${pageScope.msg }</h4>
+		<c:if test="${null ne msgt }">
+			<h4 class="alert_${msgt }">${msg }</h4>
 		</c:if>
 		
 		<article class="module width_full">
