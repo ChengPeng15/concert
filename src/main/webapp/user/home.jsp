@@ -109,13 +109,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<header><h3>News</h3></header>
 			<div class="message_list">
 				<div class="module_content">
-					<div class="message"><p>张信哲参赛伤喉咙 北京演唱会后暂别舞台</p>
-					<p><strong>网易娱乐</strong></p></div>
-					<div class="message"><p>“为爱而唱”帮助留守儿童 长沙5月迎童星公益演唱会</p>
-					<p><strong>梅州网</strong></p></div>
-					<div class="message"><p>两位“邓丽君”相聚南京备战演唱会！</p>
-					<p><strong>金陵晚报</strong></p></div>
-					
+					<div class="message"><p>Guide to Nashville's outdoor concerts in 2016</p>
+					<p><strong>The Tennessean</strong></p></div>
+					<div class="message"><p>Big Five concert roars to life</p>
+					<p><strong>The Herald</strong></p></div>
+					<div class="message"><p>'Perfect Pairs' explored in upcoming concert</p>
+					<p><strong>Baltimore Sun</strong></p></div>
 				</div>
 			</div>
 			<!--<footer>
@@ -171,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="stadium" items="${stadiums }">
 						<a href="stadium/info/${stadium.id }">
 							<div class="list" style="width:auto; float:left; margin:5px">
-								<img src="images/stadiums/${stadium.id }.jpg" width="160" height="220" alt="${stadium.name }" />
+								<img src="images/stadiums/${stadium.id }.jpg" width="160" alt="${stadium.name }" />
 								<br/>
 								<span class="centre">
 									${stadium.name }<br/>

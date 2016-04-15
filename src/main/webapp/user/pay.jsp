@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="module_content" style="height:170px; text-align: center;">
 				<ul>
 					<c:forEach var="detail" items="${preorder.detail }">
-						<li>Concert:${preorder.concertId }  Area:<c:if test="${(detail.ticketId / 100) eq '1' }">East</c:if><c:if test="${(detail.ticketId / 100) eq '2' }">West</c:if><c:if test="${(detail.ticketId / 100) eq '3' }">North</c:if><c:if test="${(detail.ticketId / 100) eq '4' }">South</c:if>   Ticket:${detail.ticketId } Price:${detail.finalPrice } </li>
+						<li>Concert:${preorder.concertName }  Area:${detail.ticket.areaName }   Ticket:${detail.ticket.code } Price:${detail.finalPrice } </li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -142,17 +142,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<article class="module width_half">
 			<header><h3>Choose a method</h3></header>
 				<div class="module_content">
-					<a href="#" class="a-btn animate">
+					<a href="book/pay/${preorder.id }" class="a-btn animate">
 						<span class="a-btn-text" style="width:75px">Alipay</span> 
 						<span class="a-btn-slide-text">It's free!</span>
 						<span class="a-btn-icon-right"><span></span></span>
 					</a>
-					<a href="#" class="a-btn animate">
+					<a href="book/pay/${preorder.id }" class="a-btn animate">
 						<span class="a-btn-text" style="width:75px">Wechat</span> 
 						<span class="a-btn-slide-text">It's free!</span>
 						<span class="a-btn-icon-right"><span></span></span>
 					</a>
-					<a href="#" class="a-btn animate">
+					<a href="book/pay/${preorder.id }" class="a-btn animate">
 						<span class="a-btn-text" style="width:75px">Paypal</span> 
 						<span class="a-btn-slide-text">It's free!</span>
 						<span class="a-btn-icon-right"><span></span></span>

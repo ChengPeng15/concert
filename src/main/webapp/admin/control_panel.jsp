@@ -117,7 +117,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<h4 class="alert_info">Welcome to the free MediaLoot admin panel template, this could be an informative message.</h4>
+		<c:if test="${null ne pageScope.msgt }">
+			<h4 class="alert_${pageScope.msgt }">${pageScope.msg }</h4>
+		</c:if>
 		
 		<article class="module width_full">
 			<div class="module_content">
