@@ -65,4 +65,8 @@
 		INSERT INTO concert(title,introduction,stadium_id,open_time,end_time,total_seat,sold_seat) VALUES 
 		(#{title},#{intro},#{stadiumId},#{open},#{end},#{total},0)
     </insert>
+    
+    <update id="updateSoldSeat">
+		UPDATE concert SET sold_seat=sold_seat+#{sold} WHERE id = #{id}
+	</update>
 </mapper>

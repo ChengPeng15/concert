@@ -72,4 +72,7 @@
 			SELECT area FROM concert_area WHERE id = #{area_id}
 		]]>
 	</select>
+	<update id="payOrder">
+		UPDATE order_info SET status=1,paid_time=now() WHERE id=#{id}
+	</update>
 </mapper>

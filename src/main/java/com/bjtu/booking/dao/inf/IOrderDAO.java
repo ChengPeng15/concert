@@ -9,4 +9,5 @@ public interface IOrderDAO {
 	int createOrder(Order order);
 	int creatOrderDetails(List<OrderDetail> details);
 	Order getOrderById(int id);
+	int payOrder(int id);
 }

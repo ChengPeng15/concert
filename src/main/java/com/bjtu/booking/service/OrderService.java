@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.bjtu.booking.bean.Order;
 import com.bjtu.booking.bean.OrderDetail;
 import com.bjtu.booking.bean.Ticket;
+import com.bjtu.booking.dao.inf.IAreaDAO;
+import com.bjtu.booking.dao.inf.IConcertDAO;
 import com.bjtu.booking.dao.inf.IOrderDAO;
 import com.bjtu.booking.dao.inf.ITicketDAO;
 
@@ -22,6 +24,12 @@ public class OrderService {
 	
 	@Resource
 	private ITicketDAO ticketDAO;
+	
+	@Resource
+	private IAreaDAO areaDAO;
+	
+	@Resource
+	private IConcertDAO concertDAO;
 	
 	public Order createOrder(int[] tickets, int concertId){
 		
@@ -48,11 +56,27 @@ public class OrderService {
 			detail.setTicketId(t);
 			detail.setFinalPrice(ticket.getPrice());
 			detail.setOriginalPrice(ticket.getPrice());
+			detail.setTicket(ticket);
 			details.add(detail);
 		}
 		orderDAO.creatOrderDetails(details);
 		
 		order.setDetail(details);
-		return orderDAO.getOrderById(order.getId());
+		return order;
 	}
+	
+	public boolean payOrder(int orderId) {
+		Order order = orderDAO.getOrderById(orderId);
+		int[] tickets = new int[order.getDetail().size()];
+		int i = 0;
+		for(OrderDetail detail : order.getDetail()){
+			tickets[i++] = detail.getTicketId();
+			areaDAO.sellTicket(detail.getTicket().getAreaId());
+		}
+		ticketDAO.sellTickets(tickets);
+		concertDAO.updateSoldSeat(tickets.length, order.getConcertId());
+		orderDAO.payOrder(order.getId());
+		return true;
+	}
+	
 }

@@ -8,4 +8,7 @@
 		INSERT INTO concert_area(concert_id,area,total_seat,sold_seat) VALUES 
 		(#{concertId},#{name},#{total},#{sold}) 
 	</insert>
+	<update id="sellTicket">
+		UPDATE concert_area SET sold_seat=sold_seat+1 WHERE id=#{id}
+	</update>
 </mapper>

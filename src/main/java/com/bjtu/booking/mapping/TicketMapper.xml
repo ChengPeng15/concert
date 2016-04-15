@@ -41,4 +41,9 @@
 		INSERT INTO ticket(code,x_value,y_value,price,area_id,status) VALUES 
 		(#{code},#{xValue},#{yValue},#{price},#{areaId},#{status})
 	</insert>
+	<update id="sellTickets">
+		<foreach collection="array" item="item" index="index" separator=";">
+			UPDATE ticket SET status=2 WHERE id=#{item}
+		</foreach>
+	</update>
 </mapper>

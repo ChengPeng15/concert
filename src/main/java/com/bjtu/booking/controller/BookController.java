@@ -106,7 +106,7 @@ public class BookController {
 			System.out.println("==[" + this.getClass().getName() + "]==");
 			System.out.println("Paying Order ID [" + orderId + "]");
 		}
-		
+		orderService.payOrder(orderId);
 		modelMap.put("msgt", "success");
 		modelMap.put("msg", "Order paid.");
 		view.setViewName("user/user_center");
