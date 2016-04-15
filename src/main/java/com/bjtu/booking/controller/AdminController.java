@@ -97,4 +97,12 @@ public class AdminController {
 		view.setViewName("admin/concert_edit");
 		return view;
 	}
+	
+	@RequestMapping("/editconcert")
+	public ModelAndView editConcert(){
+		ModelAndView view = new ModelAndView();
+		
+		view.setViewName("admin/control_panel");
+		return view;
+	}
 }

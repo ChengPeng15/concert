@@ -193,15 +193,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<br/>
 			
-			<!--TODO: seat map here-->
-			<c:if test="${'0' eq edit}">
-				<button class="a-btn" type="submit" form="concert">Add</button>
-				<a class="a-btn" href="admin/concertslist">Cancel</a>
-			</c:if>
-			<c:if test="${'1' eq edit}">
-				<button class="a-btn" type="submit" form="concert">Edit</button>
-				<a class="a-btn" href="admin/concertslist">Cancel</a>
-			</c:if>
 			<div class="clear"></div>
 		</div>
 			
@@ -217,22 +208,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</ul>
 				</header>
 
-			<div class="tab_container">
-				<c:forEach var="seatmap" items="${seatmaps }" varStatus="obj">
-					<div id="tab${obj.count }" class="tab_content">
-						<c:forEach var="row" items="${seatmap }">
-							<div>
-								<c:forEach var="seat" items="${row }">
-									<input name="ticket" class="seats" <c:if test="${seat.status ne '0' }">disabled</c:if> <c:if test="${seat.status eq '2' }">checked</c:if> id="seat${seat.id }" value="${seat.id }" type="checkbox">
-									<label for="seat${seat.id }"></label>
-								</c:forEach>
-							</div>
-							<div class="clear"></div>
-						</c:forEach>
-					</div>
-				</c:forEach>
-			</div>
+				<div class="tab_container">
+					<c:forEach var="seatmap" items="${seatmaps }" varStatus="obj">
+						<div id="tab${obj.count }" class="tab_content">
+							<c:forEach var="row" items="${seatmap }">
+								<div>
+									<c:forEach var="seat" items="${row }">
+										<input name="ticket" class="seats" <c:if test="${seat.status ne '0' }">disabled</c:if> <c:if test="${seat.status eq '2' }">checked</c:if> id="seat${seat.id }" value="${seat.id }" type="checkbox">
+										<label for="seat${seat.id }"></label>
+									</c:forEach>
+								</div>
+								<div class="clear"></div>
+							</c:forEach>
+						</div>
+					</c:forEach>
+				</div>
+			</article>
 		</c:if>
+		
+		<article class="module width_full">
+			<header>
+				<h3>Action</h3>
+			</header>
+			<div class="module_content">
+				<c:if test="${'0' eq edit}">
+					<button class="a-btn" type="submit" form="concert">Add</button>
+					<a class="a-btn" href="admin/concertslist">Cancel</a>
+				</c:if>
+				<c:if test="${'1' eq edit}">
+					<button class="a-btn" type="submit" form="concert">Edit</button>
+					<a class="a-btn" href="admin/concertslist">Cancel</a>
+				</c:if>
+			</div>
+			<div class="clear"></div>		
+		</article>
 				
 		<div class="clear"></div>
 
