@@ -1172,12 +1172,37 @@ input[type=checkbox]{
 }
 input[type=checkbox] + label{
     display: block;
-    margin: 1px;
+    margin: 3px;
     float: left;
     height: 18px;
-    width: 22px;
+    width: 38px;
+    padding: 0 0 0 24px;
+   	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+    text-shadow: 1px 1px 2px #aaaaaa;
+   	-webkit-box-shadow: 0 2px 2px #ccc, 0 1px 0 #fff;
+	-moz-box-shadow: 0 2px 2px #ccc, 0 1px 0 #fff;
+	box-shadow: 0 2px 2px #ccc, 0 1px 0 #fff;
     background: url("../images/seat.png") 0 -1px no-repeat;
     background-color: #f0f0f0;
+	-moz-transition: all 0.3s ease; 
+	-o-transition: all 0.3s ease; 
+	-webkit-transition: all 0.3s ease; 
+	transition: all 0.3s ease; 
+}
+input.noseat[type=checkbox] + label{
+    display: block;
+    margin: 3px;
+    float: left;
+    height: 18px;
+    width: 38px;
+    padding: 0 0 0 24px;
+    -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+    background: none;
+    background-color: #ffffff;
 	-moz-transition: all 0.3s ease; 
 	-o-transition: all 0.3s ease; 
 	-webkit-transition: all 0.3s ease; 
@@ -1210,6 +1235,9 @@ div:not(#foo) input[type=checkbox]:hover:disabled:checked + label,
 div:not(#foo) input[type=checkbox]:focus:disabled:checked + label,
 div:not(#foo) input[type=checkbox]:disabled:checked + label:hover{
 	background-color: #ffaaaa;
+}
+div:not(#foo) input.noseat[type=checkbox]:disabled + label{
+	background-color: #ffffff;
 }
 
 /* Form */
@@ -1255,6 +1283,24 @@ span.former input[type=text]:disabled{
 	color: #000000;
 	font-size: 1vw;
 	text-shadow: 0.1vw 0.1vw 0.3vw #aaaaaa;
+	transition: 0.3s;
+	transform-style: preserve-3d;
+}
+select.former{
+	margin: 0.1vw;
+	font-size: 1vw;
+	text-shadow: 0.1vw 0.1vw 0.3vw #aaaaaa;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #BBBBBB;
+	height: 1.05vw;
+	color: #000000;
+	-webkit-box-shadow: inset 0 2px 2px #ccc, 0 1px 0 #fff;
+	-moz-box-shadow: inset 0 2px 2px #ccc, 0 1px 0 #fff;
+	box-shadow: inset 0 2px 2px #ccc, 0 1px 0 #fff;
+	background-position: 10px 6px;
+	display: block;
 	transition: 0.3s;
 	transform-style: preserve-3d;
 }

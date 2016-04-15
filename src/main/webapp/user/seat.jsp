@@ -145,8 +145,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<c:forEach var="row" items="${seats }">
 					<div>
 						<c:forEach var="seat" items="${row }">
-							<input name="ticket" class="seats" <c:if test="${seat.status ne '0' }">disabled</c:if> <c:if test="${seat.status eq '2' }">checked</c:if> id="seat${seat.id }" value="${seat.id }" type="checkbox">
-							<label for="seat${seat.id }"></label>
+							<input name="ticket"
+								<c:if test="${seat.status ne '-1' }">"class=seats"</c:if><c:if test="${seat.status eq '-1' }">class="noseat"</c:if>
+								<c:if test="${seat.status ne '0' }">disabled</c:if>
+								<c:if test="${seat.status eq '2' }">checked</c:if>
+								id="seat${seat.id }"
+								value="${seat.id }"
+								type="checkbox">
+							<label for="seat${seat.id }"><c:if test="${seat.status ne '-1' }">${seat.price }</c:if></label>
 						</c:forEach>
 					</div>
 					<div class="clear"></div>
