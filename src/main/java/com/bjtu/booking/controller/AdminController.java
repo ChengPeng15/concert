@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bjtu.booking.bean.Area;
 import com.bjtu.booking.bean.Concert;
+import com.bjtu.booking.bean.Stadium;
+import com.bjtu.booking.bean.Ticket;
 import com.bjtu.booking.foo.Foo;
 
 /**
@@ -60,6 +63,10 @@ public class AdminController {
 			System.out.println("Editing/Newing Concert");
 		}
 		
+		List<Stadium> list = new ArrayList<Stadium>();
+		list = foo.getStadiumList();
+		modelMap.addAttribute("stadiums", list);
+
 		if (null == id){
 			if(1 == debug){
 				System.out.println("--Newing");
@@ -73,9 +80,18 @@ public class AdminController {
 				System.out.println("--ID [" + id + "]");
 			}
 			modelMap.put("edit", 1);
+			
 			Concert conct = new Concert();
 			conct = foo.getConcertDetail(id);
 			modelMap.addAttribute("concert", conct);
+			
+			List<List<List<Ticket>>> seatmaps = new ArrayList<List<List<Ticket>>>();
+			for(Area area : conct.getAreas()){
+				List<List<Ticket>> seatmap = new ArrayList<List<Ticket>>();
+				seatmap = foo.getSeatMap(area.getId());
+				seatmaps.add(seatmap);
+			}
+			modelMap.addAttribute("seatmaps", seatmaps);
 		}
 		
 		view.setViewName("admin/concert_edit");

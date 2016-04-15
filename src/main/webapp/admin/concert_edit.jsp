@@ -166,9 +166,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="iofo-top-right">
 						<input id="id" name="id" value="${concert.id }" hidden="true" />
-							<span class="former">Title:<input name="Title" type="text" value="${concert.title }"/></span><br/>
+							<span class="former">Title:<input name="title" type="text" value="${concert.title }"/></span><br/>
 							<!-- need a select -->
-							<span class="former">Stadium:<input name="stadiumName" type="text" value="${concert.stadiumName }"/></span><br/>
+							<span class="former">Stadium:
+								<select name="stadiumid">
+									<c:forEach var="stadium" items="${stadiums }">
+										<option value="${stadium.id }" <c:if test="${concert.stadiumId eq stadium.id }">selected</c:if>>${stadium.name }</option>
+									</c:forEach>
+								</select>
+							<input name="stadiumName" type="text" disabled value="${concert.stadiumName } Deprecated"/>
+							</span><br/>
 							<span class="former">Open:<input name="open" type="text" value="${concert.open }"/></span><br/>
 							<span class="former">End:<input name="end" type="text" value="${concert.end }"/></span><br/>
 							<c:if test="${'1' eq edit}"><span class="former">Total Tickets:<input name="total" type="text" value="${concert.total }" disabled="disabled"/></span><br/></c:if>
@@ -185,6 +192,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</fieldset>
 			</div>
 			<br/>
+			
 			<!--TODO: seat map here-->
 			<c:if test="${'0' eq edit}">
 				<button class="a-btn" type="submit" form="concert">Add</button>
@@ -198,6 +206,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 			
 		</article><!-- end of styles article -->
+		
+		<c:if test="${'1' eq edit}">
+			<article class="module width_full">
+				<header><h3 class="tabs_involved">Seatmaps</h3>
+					<ul class="tabs">
+			   			<c:forEach var="area" items="${concert.areas }" varStatus="obj">
+			   				<li><a href="#tab${obj.count }">${area.name }</a></li>
+			   			</c:forEach>
+					</ul>
+				</header>
+
+			<div class="tab_container">
+				<c:forEach var="seatmap" items="${seatmaps }" varStatus="obj">
+					<div id="tab${obj.count }" class="tab_content">
+						<c:forEach var="row" items="${seatmap }">
+							<div>
+								<c:forEach var="seat" items="${row }">
+									<input name="ticket" class="seats" <c:if test="${seat.status ne '0' }">disabled</c:if> <c:if test="${seat.status eq '2' }">checked</c:if> id="seat${seat.id }" value="${seat.id }" type="checkbox">
+									<label for="seat${seat.id }"></label>
+								</c:forEach>
+							</div>
+							<div class="clear"></div>
+						</c:forEach>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 				
 		<div class="clear"></div>
 
