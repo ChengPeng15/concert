@@ -101,7 +101,13 @@ public class BookController {
 	@RequestMapping("/pay/{id}")
 	public ModelAndView pay(@PathVariable("id")int orderId){
 		ModelAndView view = new ModelAndView();
-		view.setViewName("");
+		
+		if(1 == debug){
+			System.out.println("==[" + this.getClass().getName() + "]==");
+			System.out.println("Paying Order ID [" + orderId + "]");
+		}
+		
+		view.setViewName("forward:home");
 		return view;
 	}
 }

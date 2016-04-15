@@ -142,17 +142,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<article class="module width_half">
 			<header><h3>Choose a method</h3></header>
 				<div class="module_content">
-					<a href="book/pay/${preorder.id }" class="a-btn animate">
+					<a href="ticket/pay/${preorder.id }" class="a-btn animate">
 						<span class="a-btn-text" style="width:75px">Alipay</span> 
 						<span class="a-btn-slide-text">It's free!</span>
 						<span class="a-btn-icon-right"><span></span></span>
 					</a>
-					<a href="book/pay/${preorder.id }" class="a-btn animate">
+					<a href="ticket/pay/${preorder.id }" class="a-btn animate">
 						<span class="a-btn-text" style="width:75px">Wechat</span> 
 						<span class="a-btn-slide-text">It's free!</span>
 						<span class="a-btn-icon-right"><span></span></span>
 					</a>
-					<a href="book/pay/${preorder.id }" class="a-btn animate">
+					<a href="ticket/pay/${preorder.id }" class="a-btn animate">
 						<span class="a-btn-text" style="width:75px">Paypal</span> 
 						<span class="a-btn-slide-text">It's free!</span>
 						<span class="a-btn-icon-right"><span></span></span>
