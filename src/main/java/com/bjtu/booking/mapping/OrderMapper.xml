@@ -8,8 +8,12 @@
 		INSERT INTO order_info(user_id,concert_id,total_price,status,create_time) 
 		values (#{userId},#{concertId},#{tPrice},#{status},#{createTime})
 	</insert>
-	<insert id="creatOrderDetail" parameterType="com.bjtu.booking.bean.OrderDetail">
+	
+	<insert id="creatOrderDetails" parameterType="java.util.List">
 		INSERT INTO order_detail(order_id,ticket_id,final_price,original_price) 
-		values (#{orderId},#{ticketId},#{finalPrice},#{originalPrice})
+		values 
+		<foreach item="item" index="index" collection="list" separator=",">
+		(#{item.orderId},#{item.ticketId},#{item.finalPrice},#{item.originalPrice})
+		</foreach>
 	</insert>
 </mapper>

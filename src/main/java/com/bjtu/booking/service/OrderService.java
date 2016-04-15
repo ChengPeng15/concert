@@ -1,6 +1,8 @@
 package com.bjtu.booking.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -26,6 +28,7 @@ public class OrderService {
 		Order order = new Order();
 		//update ticket status
 		ticketDAO.bookTickets(tickets);
+		
 		//create order
 		order.setUserId(2);
 		//TODO set the concert id
@@ -37,6 +40,7 @@ public class OrderService {
 		orderDAO.createOrder(order);
 		
 		//create order_info
+		List<OrderDetail> details = new ArrayList<OrderDetail>();
 		for(int t : tickets){
 			Ticket ticket = ticketDAO.getTicketById(t);
 			OrderDetail detail =  new OrderDetail();
@@ -44,8 +48,10 @@ public class OrderService {
 			detail.setTicketId(t);
 			detail.setFinalPrice(ticket.getPrice());
 			detail.setOriginalPrice(ticket.getPrice());
-			
+			details.add(detail);
 		}
+		orderDAO.creatOrderDetails(details);
+		
 		return order;
 	}
 }
