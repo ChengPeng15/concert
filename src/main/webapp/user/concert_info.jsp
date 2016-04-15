@@ -169,6 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<option value="${area.id }">${area.name }(${area.total - area.sold }/${area.total })</option>
 									</c:forEach>
 								</select>
+								<input type="hidden" name="conct" value="${concert.id }"/>
 								<br>
 								<button class="a-btn" type="submit">Buy</button>
 							</form>

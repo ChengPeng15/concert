@@ -87,6 +87,7 @@ public class Foo {
 		conct.setTitle("Concert " + id);
 		conct.setIntro("Concert " + id + " will be a great success.");
 		conct.setStadiumName("Stadium " + id);
+		conct.setStadiumId(id);
 		conct.setTotal(18 + id * 12);
 		conct.setSold(3 + id * 6);
 

@@ -41,11 +41,12 @@ public class BookController {
 	 * @param id area id
 	 */
 	@RequestMapping("/area")
-	public ModelAndView area(@RequestParam("id") int id, ModelMap modelMap){
+	public ModelAndView area(@RequestParam("id") int id, @RequestParam("conct") int conctId, ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
 		
 		if(1 == debug){
 			System.out.println("==[" + this.getClass().getName() + "]==");
+			System.out.println("Requesting Concert ID [" + conctId + "]");
 			System.out.println("Requesting Area ID [" + id + "]");
 		}
 		
@@ -63,6 +64,7 @@ public class BookController {
 		
 		modelMap.addAttribute("seats", seats);
 		modelMap.addAttribute("areaId", id);
+		modelMap.addAttribute("concertId", conctId);
 		
 		view.setViewName("user/seat");
 		return view;
@@ -73,8 +75,14 @@ public class BookController {
 	 * @param ticket int array, chosen ticket(s) id
 	 */
 	@RequestMapping("/book")
-	public ModelAndView book(@RequestParam("ticket") int ticket[], ModelMap modelMap){
+	public ModelAndView book(@RequestParam("areaid") int areaId,@RequestParam("conctid") int conctId, @RequestParam("ticket") int ticket[], ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
+		
+		if(1 == debug){
+			System.out.println("==[" + this.getClass().getName() + "]==");
+			System.out.println("Selected Concert ID [" + conctId + "]");
+			System.out.println("Selected Area ID [" + areaId + "]");
+		}
 		
 		int pricecount = 0;
 		Order order = new Order();

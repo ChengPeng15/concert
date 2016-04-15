@@ -140,6 +140,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<!--seat map-->
 			<form id="seatmap" action="ticket/book" method="post">
+				<input type="hidden" name="areaid" value="${areaId }"/>
+				<input type="hidden" name="conctid" value="${concertId }"/>
 				<c:forEach var="row" items="${seats }">
 					<div>
 						<c:forEach var="seat" items="${row }">
