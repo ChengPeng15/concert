@@ -158,16 +158,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:forEach var="detail" items="${order.detail }" varStatus="obj">
 						<span class="former">${obj.count}. Area:${detail.ticket.areaName } Seat:${detail.ticket.code } Price:${detail.finalPrice }</span><br/>
 						</c:forEach>						
-					<c:if test="${'0' eq edit}">
-						<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/><c:param name="edit" value="1"/></c:url>
-						<a class="a-btn" href="${userinfo }">Edit</a>
-						<a class="a-btn" href="user/user_center.jsp">Back</a>
+					<c:if test="${'0' eq order.status}">
+						<a class="a-btn" href="ticket/pay/${order.id}">Pay Now</a>
 					</c:if>
-					<c:if test="${'1' eq edit}">
-						<c:url var="userinfo" value="user/info"><c:param name="id" value="1"/></c:url>
-						<button class="a-btn" type="submit" form="user">Confirm</button>
-						<a class="a-btn" href="${userinfo }">Cancel</a>
-					</c:if>
+						<c:url var="userorder" value="user/order"><c:param name="id" value="1"/></c:url>
+						<a class="a-btn" href="${userorder }">Back</a>
 				</div>
 				<div class="clear"></div>
 			</div>

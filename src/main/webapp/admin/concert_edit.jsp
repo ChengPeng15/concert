@@ -168,14 +168,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input id="id" name="id" value="${concert.id }" hidden="true" />
 							<span class="former">Title:<input name="title" type="text" value="${concert.title }"/></span><br/>
 							<!-- need a select -->
-							<span class="former">Stadium:</span>
+							<span class="former">Stadium:
 								<select class="former" name="stadiumid">
 									<c:forEach var="stadium" items="${stadiums }">
 										<option value="${stadium.id }" <c:if test="${concert.stadiumId eq stadium.id }">selected</c:if>>${stadium.name }</option>
 									</c:forEach>
 								</select>
-							<input name="stadiumName" type="text" disabled value="${concert.stadiumName } Deprecated"/>
-							<br/>
+							</span><br/>
 							<span class="former">Open:<input name="open" type="text" value="${concert.open }"/></span><br/>
 							<span class="former">End:<input name="end" type="text" value="${concert.end }"/></span><br/>
 							<c:if test="${'1' eq edit}"><span class="former">Total Tickets:<input name="total" type="text" value="${concert.total }" disabled="disabled"/></span><br/></c:if>
@@ -214,8 +213,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<c:forEach var="row" items="${seatmap }">
 								<div>
 									<c:forEach var="seat" items="${row }">
-										<input name="ticket" class="seats" <c:if test="${seat.status ne '0' }">disabled</c:if> <c:if test="${seat.status eq '2' }">checked</c:if> id="seat${seat.id }" value="${seat.id }" type="checkbox">
-										<label for="seat${seat.id }"></label>
+										<input name="ticket"
+											<c:if test="${seat.status ne '-1' }">"class=seats"</c:if><c:if test="${seat.status eq '-1' }">class="noseat"</c:if>
+											<c:if test="${seat.status ne '0' }">disabled</c:if>
+											<c:if test="${seat.status eq '2' }">checked</c:if>
+											id="seat${seat.id }"
+											value="${seat.id }"
+											type="checkbox">
+										<label for="seat${seat.id }"><c:if test="${seat.status ne '-1' }">${seat.price }</c:if></label>
 									</c:forEach>
 								</div>
 								<div class="clear"></div>
