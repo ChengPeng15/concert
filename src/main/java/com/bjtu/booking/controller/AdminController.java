@@ -123,15 +123,15 @@ public class AdminController {
 		if (1 == debug) {
 			System.out.println("==[" + this.getClass().getName() + "]==");
 			System.out.println("Adding Concert");
-			System.out.println("--title ["+title+"]");
-			System.out.println("--intro ["+intro+"]");
-			System.out.println("--stadId ["+stadiumId+"]");
-			System.out.println("--open ["+open+"]");
-			System.out.println("--end ["+end+"]");
-			System.out.println("--seat ["+seatmap.getOriginalFilename()+"]");
-			System.out.println("--poster ["+poster.getOriginalFilename()+"]");
+			System.out.println("--title [" + title + "]");
+			System.out.println("--intro [" + intro + "]");
+			System.out.println("--stadId [" + stadiumId + "]");
+			System.out.println("--open [" + open + "]");
+			System.out.println("--end [" + end + "]");
+			System.out.println("--seat [" + seatmap.getOriginalFilename() + "]");
+			System.out.println("--poster [" + poster.getOriginalFilename() + "]");
 		}
-		
+
 		Concert conct = new Concert();
 		conct.setTitle(title);
 		conct.setIntro(intro);
@@ -145,21 +145,45 @@ public class AdminController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 		view.setViewName("admin/control_panel");
 		return view;
 	}
 
 	@RequestMapping("/editconcert")
-	public ModelAndView editConcert() {
+	public ModelAndView editConcert(@RequestParam(value = "poster", required = false) MultipartFile poster,
+			@RequestParam("title") String title, @RequestParam("stadiumid") int stadiumId,
+			@RequestParam("intro") String intro, @RequestParam("open") Timestamp open,
+			@RequestParam("end") Timestamp end) {
 		ModelAndView view = new ModelAndView();
 
 		if (1 == debug) {
 			System.out.println("==[" + this.getClass().getName() + "]==");
 			System.out.println("Editing Concert");
+			System.out.println("--title [" + title + "]");
+			System.out.println("--intro [" + intro + "]");
+			System.out.println("--stadId [" + stadiumId + "]");
+			System.out.println("--open [" + open + "]");
+			System.out.println("--end [" + end + "]");
+			System.out.println("--poster [" + poster.getOriginalFilename() + "]");
 		}
+		
+		Concert conct = new Concert();
+		conct.setTitle(title);
+		conct.setIntro(intro);
+		conct.setStadiumId(stadiumId);
+		conct.setOpen(open);
+		conct.setEnd(end);
 
+		if (null != poster){
+			try {
+				InputStream pio = poster.getInputStream();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		view.setViewName("admin/control_panel");
 		return view;
 	}
