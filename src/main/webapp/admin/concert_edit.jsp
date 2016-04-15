@@ -151,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<div class="ticket-info-top">
 				<h1>Concert Info</h1>	
-					<form id="concert" method="post">
+					<form id="concert" method="post" enctype="multipart/form-data">
 					<div class="info-top-left">
 						<p>
 							<c:if test="${0 eq edit }">
@@ -168,14 +168,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<input id="id" name="id" value="${concert.id }" hidden="true" />
 							<span class="former">Title:<input name="title" type="text" value="${concert.title }"/></span><br/>
 							<!-- need a select -->
-							<span class="former">Stadium:
-								<select name="stadiumid">
+							<span class="former">Stadium:</span>
+								<select class="former" name="stadiumid">
 									<c:forEach var="stadium" items="${stadiums }">
 										<option value="${stadium.id }" <c:if test="${concert.stadiumId eq stadium.id }">selected</c:if>>${stadium.name }</option>
 									</c:forEach>
 								</select>
 							<input name="stadiumName" type="text" disabled value="${concert.stadiumName } Deprecated"/>
-							</span><br/>
+							<br/>
 							<span class="former">Open:<input name="open" type="text" value="${concert.open }"/></span><br/>
 							<span class="former">End:<input name="end" type="text" value="${concert.end }"/></span><br/>
 							<c:if test="${'1' eq edit}"><span class="former">Total Tickets:<input name="total" type="text" value="${concert.total }" disabled="disabled"/></span><br/></c:if>
@@ -188,7 +188,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="ticket-info-mid">
 				<fieldset>
 					<label class="former">Intro:</label>
-					<textarea class="former" form="concert" rows="4">${concert.intro }</textarea>
+					<textarea name="intro" class="former" form="concert" rows="4">${concert.intro }</textarea>
 				</fieldset>
 			</div>
 			<br/>
