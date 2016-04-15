@@ -151,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			<div class="ticket-info-top">
 				<h1>Concert Info</h1>	
-					<form id="concert" action="admin/editconcert" method="post">
+					<form id="concert" method="post">
 					<div class="info-top-left">
 						<p>
 							<c:if test="${0 eq edit }">
@@ -232,11 +232,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</header>
 			<div class="module_content">
 				<c:if test="${'0' eq edit}">
-					<button class="a-btn" type="submit" form="concert">Add</button>
+					<button class="a-btn" type="submit" formaction="admin/addconcert" form="concert">Add</button>
 					<a class="a-btn" href="admin/concertslist">Cancel</a>
 				</c:if>
 				<c:if test="${'1' eq edit}">
-					<button class="a-btn" type="submit" form="concert">Edit</button>
+					<button class="a-btn" type="submit" formaction="admin/editconcert" form="concert">Edit</button>
 					<a class="a-btn" href="admin/concertslist">Cancel</a>
 				</c:if>
 			</div>

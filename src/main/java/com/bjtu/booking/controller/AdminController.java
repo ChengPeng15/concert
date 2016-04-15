@@ -98,9 +98,27 @@ public class AdminController {
 		return view;
 	}
 	
+	@RequestMapping("/addconcert")
+	public ModelAndView addConcert(){
+		ModelAndView view = new ModelAndView();
+		
+		if(1 == debug){
+			System.out.println("==[" + this.getClass().getName() + "]==");
+			System.out.println("Adding Concert");
+		}
+		
+		view.setViewName("admin/control_panel");
+		return view;
+	}
+	
 	@RequestMapping("/editconcert")
 	public ModelAndView editConcert(){
 		ModelAndView view = new ModelAndView();
+		
+		if(1 == debug){
+			System.out.println("==[" + this.getClass().getName() + "]==");
+			System.out.println("Editing Concert");
+		}
 		
 		view.setViewName("admin/control_panel");
 		return view;
