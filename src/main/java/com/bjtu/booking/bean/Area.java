@@ -1,6 +1,7 @@
 package com.bjtu.booking.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Area implements Serializable {
@@ -13,7 +14,7 @@ public class Area implements Serializable {
 	private String name;
 	private int total;
 	private int sold;
-	private List<Ticket> tickets; // for front end use
+	private List<Ticket> tickets = new ArrayList<Ticket>(); // for front end use
 
 	public int getId() {
 		return id;

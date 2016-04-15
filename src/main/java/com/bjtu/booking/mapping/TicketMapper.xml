@@ -37,4 +37,8 @@
 			UPDATE ticket SET status=2 WHERE id=#{item}
 		</foreach>
 	</update>
+	<insert id="addTickets" parameterType="com.bjtu.booking.bean.Ticket">
+		INSERT INTO ticket(code,x_value,y_value,price,area_id,status) VALUES 
+		(#{code},#{xValue},#{yValue},#{price},#{areaId},#{status})
+	</insert>
 </mapper>

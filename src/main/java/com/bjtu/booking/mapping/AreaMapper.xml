@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjtu.booking.dao.inf.IAreaDAO">
+	<insert id="addArea" parameterType="com.bjtu.booking.bean.Area">
+		<selectKey resultType="int" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO concert_area(concert_id,area,total_seat,sold_seat) VALUES 
+		(#{concertId},#{name},#{total},#{sold}) 
+	</insert>
+</mapper>

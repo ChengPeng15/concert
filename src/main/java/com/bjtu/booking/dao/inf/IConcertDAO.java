@@ -12,4 +12,5 @@ public interface IConcertDAO {
 	List<Concert> getConcertList(@Param("current") Date date);
 	List<Concert> getLatest3Concert(@Param("current") Date date);
 	Concert getConcertById(int id);
+	int addConcert(Concert concert);
 }

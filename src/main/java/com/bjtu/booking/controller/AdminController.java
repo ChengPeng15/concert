@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -141,11 +140,12 @@ public class AdminController {
 		try {
 			InputStream pio = poster.getInputStream();
 			InputStream sio = seatmap.getInputStream();
+			concertService.addConcert(conct, sio);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		view.setViewName("admin/control_panel");
 		return view;
 	}

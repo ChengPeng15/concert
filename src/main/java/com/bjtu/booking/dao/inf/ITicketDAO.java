@@ -9,4 +9,5 @@ public interface ITicketDAO {
 	double getTotalPrice(int[] tickets);
 	int bookTickets(int[] tickets);
 	Ticket getTicketById(int id);
+	int addTickets(Ticket tickets);
 }

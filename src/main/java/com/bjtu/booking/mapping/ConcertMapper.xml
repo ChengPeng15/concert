@@ -57,4 +57,12 @@
     		SELECT * FROM concert_area WHERE concert_id = #{concert_id}
     	]]>
     </select>
+    
+    <insert id="addConcert" parameterType="com.bjtu.booking.bean.Concert">
+    	<selectKey resultType="int" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO concert(title,introduction,stadium_id,open_time,end_time,total_seat,sold_seat) VALUES 
+		(#{title},#{intro},#{stadiumId},#{open},#{end},#{total},0)
+    </insert>
 </mapper>
