@@ -9,8 +9,8 @@ public class OrderDetail implements Serializable {
 	private int orderId;
 	private int ticketId;
 	private Ticket ticket;
-	private float finalPrice;
-	private float originalPrice;
+	private double finalPrice;
+	private double originalPrice;
 
 	public int getId() {
 		return id;
@@ -44,19 +44,19 @@ public class OrderDetail implements Serializable {
 		this.ticket = ticket;
 	}
 
-	public float getFinalPrice() {
+	public double getFinalPrice() {
 		return finalPrice;
 	}
 
-	public void setFinalPrice(float finalPrice) {
+	public void setFinalPrice(double finalPrice) {
 		this.finalPrice = finalPrice;
 	}
 
-	public float getOriginalPrice() {
+	public double getOriginalPrice() {
 		return originalPrice;
 	}
 
-	public void setOriginalPrice(float originalPrice) {
+	public void setOriginalPrice(double originalPrice) {
 		this.originalPrice = originalPrice;
 	}
 

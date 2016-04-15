@@ -16,6 +16,11 @@
 			SELECT * FROM ticket WHERE area_id = #{area_id} ORDER BY y_value, x_value ASC
 		]]>
 	</select>
+	<select id="getTicketById" resultMap="tickets">
+		<![CDATA[
+			SELECT * FROM ticket WHERE id = #{id}
+		]]>
+	</select>
 	<select id="getAreaName" resultType="String">
 		<![CDATA[
 			SELECT area FROM concert_area WHERE id = #{area_id}
@@ -27,5 +32,9 @@
 			#{item}
 			</foreach>>
 	</select>
-	
+	<update id="bookTickets">
+		<foreach collection="array" item="item" index="index" separator=";">
+			UPDATE ticket SET status=2 WHERE id=#{item}
+		</foreach>
+	</update>
 </mapper>
