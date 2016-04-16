@@ -129,8 +129,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
-	
+		<c:if test="${null ne msgt }">
+			<h4 class="alert_${msgt }">${msg }</h4>
+		</c:if>
+		
 		<article class="module width_full">
 		<header><h3>Choose seat</h3></header>
 		<div class="module_content">
@@ -159,14 +161,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</c:forEach>
 			</form>
 			<div>
-				<h2>Summize</h2>
-				<ul>
-					<li style="font-family: Microsoft Yahei;font-size: 20px;">Donec ullamcorper nulla non metus auctor fringilla. </li>
-					<br/>
-					<li style="font-family: Microsoft Yahei;font-size: 20px;">Cras mattis consectetur purus sit amet fermentum.</li>
-					<br/>
-					
-				</ul>
 				<button class="a-btn" type="submit" form="seatmap">Next</button>
 			</div>
 			<div class="clear"></div>

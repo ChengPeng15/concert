@@ -120,11 +120,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<article class="module width_full">
 			<header><h3>Sum</h3></header>
 			<div class="module_content" style="height:170px; text-align: center;">
-				<ul>
 					<c:forEach var="detail" items="${preorder.detail }">
-						<li>Concert:${preorder.concertName }  Area:${detail.ticket.areaName }   Ticket:${detail.ticket.code } Price:${detail.finalPrice } </li>
+						<span class="former">Concert:${preorder.concertName }  Area:${detail.ticket.areaName }   Ticket:${detail.ticket.code } Price:${detail.finalPrice } </span><br/>
 					</c:forEach>
-				</ul>
 			</div>
 		</article>
 		

@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $(function(){
         $('.column').equalHeight();
     });
-</script>
+	</script>
 
 </head>
 
@@ -162,13 +162,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</c:if>
 						</p>
 						<br/>
-						<input name="poster" type="file" accept="image/*"/>	
+						<span class="former">
+							<input id="postup" class="upload" name="poster" type="file" accept="image/*"/>
+							<label for="postup" >
+								Upload Poster (image)
+							</label>
+							<span id="postfilename" class="filename">No file selected</span>
+						</span>
+						<script type="text/javascript">
+							//file name display
+							$('input[name="poster"]').change(function(){
+							    var fileName = $(this).val();
+							    document.getElementById("postfilename").textContent=fileName;
+							});
+						</script>
 					</div>
 					<div class="iofo-top-right">
 						<input id="id" name="id" value="${concert.id }" hidden="true" />
 							<span class="former">Title:<input name="title" type="text" value="${concert.title }"/></span><br/>
 							<!-- need a select -->
-							<span class="former">Stadium:
+							<span class="former">
+								Stadium:
 								<select class="former" name="stadiumid">
 									<c:forEach var="stadium" items="${stadiums }">
 										<option value="${stadium.id }" <c:if test="${concert.stadiumId eq stadium.id }">selected</c:if>>${stadium.name }</option>
@@ -179,7 +193,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<span class="former">End:<input name="end" type="text" value="${concert.end }"/></span><br/>
 							<c:if test="${'1' eq edit}"><span class="former">Total Tickets:<input name="total" type="text" value="${concert.total }" disabled="disabled"/></span><br/></c:if>
 							<c:if test="${'1' eq edit}"><span class="former">Sold Tickets:<input name="sold" type="text" value="${concert.sold }" disabled="disabled"/></span></c:if>
-							<c:if test="${'0' eq edit}"><span class="former">Seatmap:<input name="seatmap" type="file" accept=".xls,.xlsx"/></span></c:if>
+							<c:if test="${'0' eq edit}">
+								<span class="former">
+									Seatmap:
+									<input id="seatup" class="upload" name="seatmap" type="file" accept=".xls"/>
+									<label for="seatup" >
+										Upload Seatmap (.xls)
+									</label>
+									<span id="seatfilename" class="filename">No file selected</span>
+								</span>
+								<script type="text/javascript">
+									//file name display
+									$('input[name="seatmap"]').change(function(){
+									    var fileName = $(this).val();
+									    document.getElementById("seatfilename").textContent=fileName;
+									});
+								</script>
+							</c:if>
 					</div>
 					</form>
 				<div class="clear"></div>

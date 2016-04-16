@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<base href="<%=basePath%>">
 	<meta charset="utf-8"/>
-	<title>Concert Detail</title>
+	<title>Stadium Detail</title>
 	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
 	<style type="text/css">
@@ -130,8 +130,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
-	
+		<c:if test="${null ne msgt }">
+			<h4 class="alert_${msgt }">${msg }</h4>
+		</c:if>
+		
 		<article class="module width_full">
 		<header><h3>Stadium Details</h3></header>
 		<div class="module_content">

@@ -130,10 +130,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<section id="main" class="column">
 		
-		<h4 class="alert_info">Welcome to whatever for booking concert's tickets.</h4>
-	
+		<c:if test="${null ne msgt }">
+			<h4 class="alert_${msgt }">${msg }</h4>
+		</c:if>
+			
 		<article class="module width_full">
-		<header><h3>Tickets Details</h3></header>
+		<header><h3>Concert Details</h3></header>
 		<div class="module_content">
 
 			<div class="ticket-info-top">
@@ -148,33 +150,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li><p id="sidebar"><h3>  End：${concert.end }</h3></p></li>
 						<li><p id="sidebar"><h3>Stadium：${concert.stadiumName }</h3></p></li>
 						<li><p id="sidebar"><h3>Ticket：${concert.total - concert.sold }/${concert.total } (Available/Total)</h3></p></li>
-						<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><table>
-							<tr>
-							<th valign="top"></th>
-							<td>	
-							
-							</td>
-							<td></td>
-						</table>
+						<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 					</ul>
 					<ul>
-					<table><tr>
-					<!--
-						<th><div class="btn_view_site_a"><a href="">Aera Select</a></div></th>
-						<th><div class="btn_view_site_a"><a href="">Buy</a></div></th>-->
-						<th><form action="ticket/area" method="post">
-								Aera Select (Available/Total):
-								<select name="id">
-									<c:forEach var="area" items="${concert.areas }">
-										<option value="${area.id }">${area.name }(${area.total - area.sold }/${area.total })</option>
-									</c:forEach>
-								</select>
-								<input type="hidden" name="conct" value="${concert.id }"/>
-								<br>
-								<button class="a-btn" type="submit">Buy</button>
-							</form>
-							</th>
-					</tr></table>
+					<form action="ticket/area" method="post">
+						Aera Select (Available/Total):
+						<select name="id">
+							<c:forEach var="area" items="${concert.areas }">
+								<option value="${area.id }">${area.name }(${area.total - area.sold }/${area.total })</option>
+							</c:forEach>
+						</select>
+						<input type="hidden" name="conct" value="${concert.id }"/>
+						<br>
+						<button class="a-btn" type="submit">Buy</button>
+					</form>
 					</ul>
 				</div>
 				<div class="clear"></div>
@@ -187,12 +176,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<p style="text-indent:2em;">${concert.intro }</p>
 
 
-			<ul>
-				<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
-				<li>Cras mattis consectetur purus sit amet fermentum.</li>
-				<li>Donec ullamcorper nulla non metus auctor fringilla. </li>
-				<li>Cras mattis consectetur purus sit amet fermentum.</li>
-			</ul>
 		</div>
 		
 				

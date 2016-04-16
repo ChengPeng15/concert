@@ -1313,6 +1313,47 @@ select.former:focus{
 	transition: 0.3s;
 	transform-style: preserve-3d;
 }
+input.upload[type=file]{
+	display:none;
+}
+input.upload[type=file] + label{
+	display:block;
+	margin: 0.1vw;
+	padding: 0.1vw;
+	font-size: 1vw;
+	text-shadow: 0.1vw 0.1vw 0.3vw #aaaaaa;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #BBBBBB;
+	color: #000000;
+	-webkit-box-shadow: 0 2px 2px #ccc, 0 1px 0 #fff;
+	-moz-box-shadow: 0 2px 2px #ccc, 0 1px 0 #fff;
+	box-shadow: 0 2px 2px #ccc, 0 1px 0 #fff;
+	background-position: 10px 6px;
+	transition: 0.3s;
+	transform-style: preserve-3d;
+}
+input.upload[type=file]:hover + label{
+	font-size: 1vw;
+	text-shadow: 0.2vw 0.2vw 0.3vw #aaaaaa;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #BBBBBB;
+	color: #000000;
+	-webkit-box-shadow: 0 4px 4px #ccc, 0 1px 0 #fff;
+	-moz-box-shadow: 0 4px 4px #ccc, 0 1px 0 #fff;
+	box-shadow: 0 4px 4px #ccc, 0 1px 0 #fff;
+	transition: 0.3s;
+	transform-style: preserve-3d;
+}
+span.filename{
+	padding: 0 0 0 0.3vw;
+	transition: 0.3s;
+	transform-style: preserve-3d;
+}
+
 
 /* Concerts/Stadiums list */
 .list{
