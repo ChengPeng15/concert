@@ -45,7 +45,7 @@ public class OrderService {
 		
 		//create order
 		//TODO set the user id
-//		order.setUserId(2);
+		order.setUserId(3);
 		order.setConcertId(concertId);
 		double totalPrice = ticketDAO.getTotalPrice(tickets);
 		order.settPrice(totalPrice);

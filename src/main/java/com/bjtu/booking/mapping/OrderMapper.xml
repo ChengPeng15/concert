@@ -9,8 +9,8 @@
 		<result property="status" column="status"/>
 		<result property="createTime" column="create_time"/>
 		<result property="payTime" column="paid_time"/>
-		<association property="concertName" column="concert_id" javaType="com.bjtu.booking.bean.UserInfo" select="getUserInfo"></association>
-		<association property="user" column="user_id" javaType="java.lang.String" select="getConcertName"></association>
+		<association property="concertName" column="concert_id" javaType="String" select="getConcertName"></association>
+		<association property="user" column="user_id" javaType="com.bjtu.booking.bean.UserInfo" select="getUserInfo"></association>
 		<collection property="detail" ofType="com.bjtu.booking.bean.OrderDetail" javaType="ArrayList" column="id" select="getOrderDetail"></collection>
 	</resultMap>
 	<resultMap type="com.bjtu.booking.bean.UserInfo" id="userInfo">
@@ -49,8 +49,8 @@
 		<selectKey resultType="int" keyProperty="id" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
-		INSERT INTO order_info(concert_id,total_price,status,create_time) 
-		values (#{concertId},#{tPrice},#{status},#{createTime})
+		INSERT INTO order_info(user_id,concert_id,total_price,status,create_time) 
+		values (#{userId},#{concertId},#{tPrice},#{status},#{createTime})
 	</insert>
 	
 	<insert id="creatOrderDetails" parameterType="java.util.List">
