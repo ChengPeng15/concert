@@ -98,16 +98,15 @@ public class BookController {
 	/**
 	 * 
 	 */
-	@RequestMapping("/pay/{id}")
-	public ModelAndView pay(@PathVariable("id")int orderId, ModelMap modelMap){
+	@RequestMapping("/pay")
+	public ModelAndView pay(@RequestParam("id")int orderId, @RequestParam("card")String ccNumber, ModelMap modelMap){
 		ModelAndView view = new ModelAndView();
 		
 		if(1 == debug){
 			System.out.println("==[" + this.getClass().getName() + "]==");
 			System.out.println("Paying Order ID [" + orderId + "]");
 		}
-		//TODO need to provide the credit card number
-		String ccNumber = "6220886977535544";
+//		String ccNumber = "6220886977535544";
 		orderService.payOrder(orderId, ccNumber);
 		modelMap.put("msgt", "success");
 		modelMap.put("msg", "Order paid.");

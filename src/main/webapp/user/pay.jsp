@@ -140,11 +140,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<article class="module width_half">
 			<header><h3>Choose a method</h3></header>
 				<div class="module_content">
-					<a href="ticket/pay/${preorder.id }" class="a-btn animate">
+					<form id="pay" action="ticket/pay" method="post">
+						<input type="hidden" name="id" value="${preorder.id }"/>
+						<span class="former">Card No.:<input name="card" type="text"></span>
+					</form>
+					<button type="submit" form="pay" class="a-btn animate">
 						<span class="a-btn-text" style="width:75px">Alipay</span> 
 						<span class="a-btn-slide-text">It's free!</span>
 						<span class="a-btn-icon-right"><span></span></span>
-					</a>
+					</button>
 					<a href="ticket/pay/${preorder.id }" class="a-btn animate">
 						<span class="a-btn-text" style="width:75px">Wechat</span> 
 						<span class="a-btn-slide-text">It's free!</span>
