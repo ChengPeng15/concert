@@ -9,8 +9,18 @@
 		<result property="status" column="status"/>
 		<result property="createTime" column="create_time"/>
 		<result property="payTime" column="paid_time"/>
-		<association property="concertName" column="concert_id" javaType="java.lang.String" select="getConcertName"></association>
+		<association property="concertName" column="concert_id" javaType="com.bjtu.booking.bean.UserInfo" select="getUserInfo"></association>
+		<association property="user" column="user_id" javaType="java.lang.String" select="getConcertName"></association>
 		<collection property="detail" ofType="com.bjtu.booking.bean.OrderDetail" javaType="ArrayList" column="id" select="getOrderDetail"></collection>
+	</resultMap>
+	<resultMap type="com.bjtu.booking.bean.UserInfo" id="userInfo">
+		<id column="id" property="id"/>
+		<result property="email" column="email"/>
+		<result property="address" column="address"/>
+		<result property="mobile" column="mobile"/>
+		<result property="name" column="address"/>
+		<result property="password" column="password"/>
+		<result property="role" column="role"/>
 	</resultMap>
 	<resultMap type="com.bjtu.booking.bean.OrderDetail" id="orderDetail">
 		<id column="id" property="id"/>
@@ -30,7 +40,11 @@
 		<result property="status" column="status"/>
 		<association property="areaName" column="area_id" javaType="String" select="getAreaName"></association>
 	</resultMap>
-	
+	<select id="getUserInfo" resultMap="userInfo">  
+        <![CDATA[
+            SELECT * from user_info WHERE id = #{id}
+        ]]>
+    </select>
 	<insert id="createOrder" parameterType="com.bjtu.booking.bean.Order">
 		<selectKey resultType="int" keyProperty="id" order="AFTER">
 			SELECT LAST_INSERT_ID()

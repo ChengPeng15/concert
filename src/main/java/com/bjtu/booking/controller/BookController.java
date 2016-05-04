@@ -106,7 +106,9 @@ public class BookController {
 			System.out.println("==[" + this.getClass().getName() + "]==");
 			System.out.println("Paying Order ID [" + orderId + "]");
 		}
-		orderService.payOrder(orderId);
+		//TODO need to provide the credit card number
+		String ccNumber = "6220886977535544";
+		orderService.payOrder(orderId, ccNumber);
 		modelMap.put("msgt", "success");
 		modelMap.put("msg", "Order paid.");
 		view.setViewName("user/user_center");

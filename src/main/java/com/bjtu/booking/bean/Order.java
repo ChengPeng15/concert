@@ -17,6 +17,7 @@ public class Order implements Serializable {
 	private Timestamp payTime;
 	private List<OrderDetail> detail;
 	private int detailNum;
+	private UserInfo user;
 
 	public int getId() {
 		return id;
@@ -98,4 +99,11 @@ public class Order implements Serializable {
 		this.detailNum = detailNum;
 	}
 
+	public UserInfo getUser() {
+		return user;
+	}
+
+	public void setUser(UserInfo user) {
+		this.user = user;
+	}
 }
